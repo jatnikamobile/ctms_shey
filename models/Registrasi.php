@@ -68,18 +68,17 @@ class Registrasi extends \yii\db\ActiveRecord
             'no_urut' => 'Phase',
             'paket_id' => 'Protokol Uji',
             'pasien_id' => 'Judul Protokol',
-            'tanggal' => 'Tanggal',
-            'nik_pasien' => 'Nik Pasien',
+            'tanggal' => 'Nomor Protokol',
+            'nik_pasien' => 'Kode Protokol',
             'nama_pasien' => 'Nama Protokol',
-            'alamat_pasien' => 'Alamat Pasien',
-            'tempat_lahir_pasien' => 'Tempat Lahir Pasien',
+            'tempat_lahir_pasien' => 'Nama Obat',
             'tanggal_lahir_pasien' => 'Tanggal Lahir Pasien',
             'jenis_kelamin_pasien' => 'Jenis Kelamin Pasien',
             'golongan_darah_pasien' => 'Golongan Darah Pasien',
             'no_telepon_pasien' => 'No Telepon Pasien',
             'status_kawin_pasien' => 'Status Kawin Pasien',
-            'id_pasien_instansi' => 'Klinik Penguji',
-            'id_pasien_unit' => 'Pasien Unit',
+            'id_pasien_instansi' => 'Nama Sponsor',
+            'id_pasien_unit' => 'Phase',
             'id_pasien_agama' => 'Pasien Agama',
             'id_pasien_pekerjaan' => 'Pasien Pekerjaan',
             'id_pasien_pendidikan' => 'Pasien Pendidikan',
@@ -367,181 +366,6 @@ class Registrasi extends \yii\db\ActiveRecord
 
         return $no_max;
     }
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
     public function setNomorMcu($param)
     {

@@ -6,7 +6,7 @@ use app\models\PemeriksaanRincianHasil;
 ?>
 
 <?php if($allow_button == 1): ?>
-<?= Html::a('<i class="fa fa-print"></i> Cetak Pemeriksaan '.$paketPemeriksaan->pemeriksaan->nama, ['/pemeriksaan/unduh-hasil-pemeriksaan', 'id' => $paketPemeriksaan->pemeriksaan->id,'id_registrasi' => $model->id], ['class' => 'btn btn-success btn-flat','target' => '_blank']) ?>
+<?= Html::a('<i class="fa fa-print"></i> Cetak Detail Protokol '.$paketPemeriksaan->pemeriksaan->nama, ['/pemeriksaan/unduh-hasil-pemeriksaan', 'id' => $paketPemeriksaan->pemeriksaan->id,'id_registrasi' => $model->id], ['class' => 'btn btn-success btn-flat','target' => '_blank']) ?>
 <?php endif;?>
 
 <?php foreach($paketPemeriksaan->pemeriksaan->manyPemeriksaanRincianInduk as $pemeriksaanRincian):?>
@@ -55,7 +55,8 @@ use app\models\PemeriksaanRincianHasil;
 ]) ?>
 <?php if ($disabled == false) 
 	{
-		echo \yii\helpers\Html::submitButton('<i class="fa fa-check"></i> Simpan Pemeriksaan',['class' => 'btn btn-success btn-flat pull-right','data-confirm' => 'Apakah anda yakin akan menyimpan data Pemeriksaan?']);
+		echo \yii\helpers\Html::submitButton('<i class="fa fa-check"></i> Setuju',['class' => 'btn btn-success btn-flat pull-right','data-confirm' => 'Apakah anda yakin akan menyetujui protokol tersebut?']);
+		echo Html::a('<i class="fa fa-times"></i> Tidak Setuju', ['#'], ['class' => 'btn btn-warning btn-flat pull-right','data-confirm' => 'Apakah anda yakin akan menolak protokol tersebut?']);
 	}
 ?>
 

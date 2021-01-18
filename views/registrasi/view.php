@@ -10,14 +10,14 @@ use kartik\tabs\TabsX;
 /* @var $this yii\web\View */
 /* @var $model app\models\Registrasi */
 
-$this->title = "Detail Registrasi";
+$this->title = "Detail Protokol";
 $this->params['breadcrumbs'][] = ['label' => 'Registrasi', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 $allow_button = 0;
 ?>
 <div class="registrasi-view box box-primary">
     <div class="box-header">
-        <h3 class="box-title">Detail Registrasi</h3>
+        <h3 class="box-title">Detail Protokol</h3>
     </div>
 
     <div class="box-body">
@@ -109,8 +109,8 @@ $allow_button = 0;
     </div>
 
     <div class="box-footer">
-        <?= Html::a('<i class="fa fa-pencil"></i> Sunting Registrasi', ['update', 'id' => $model->id], ['class' => 'btn btn-primary btn-flat']) ?>
-        <?= Html::a('<i class="fa fa-list"></i> Daftar Registrasi', ['index'], ['class' => 'btn btn-warning btn-flat']) ?>
+        <?= Html::a('<i class="fa fa-pencil"></i> Sunting Protokol', ['update', 'id' => $model->id], ['class' => 'btn btn-primary btn-flat']) ?>
+        <?= Html::a('<i class="fa fa-list"></i> Daftar Protokol', ['index'], ['class' => 'btn btn-warning btn-flat']) ?>
         <div>&nbsp;</div>
 
         <?= $this->render('pemeriksaan-tabs',[

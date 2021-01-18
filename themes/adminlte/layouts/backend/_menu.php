@@ -14,8 +14,8 @@ use app\models\UserRole;
             ['label' => 'Analisis Hasil Uji', 'icon' => 'circle-o', 'url' => ['registrasi/analisis-mcu']],
             ['label' => 'Resume Uji Klinis', 'icon' => 'check-square-o', 'url' => ['registrasi/resume-pasien']],
             ['label' => 'MENU MASTER','options' => ['class' => 'header']],
-            ['label' => 'Mster Form ', 'icon' => 'circle-o', 'url' => ['pemeriksaan/index']],
-            ['label' => 'Protokol Uji', 'icon' => 'circle-o', 'url' => ['paket/index']],
+            ['label' => 'Set Up Protokol ', 'icon' => 'circle-o', 'url' => ['pemeriksaan/index']],
+            ['label' => 'Parameter Protokol', 'icon' => 'circle-o', 'url' => ['paket/index']],
             ['label' => 'Instansi', 'icon' => 'circle-o', 'url' => ['instansi/index']],
             ['label' => 'Unit', 'icon' => 'circle-o', 'url' => ['unit/index']],
             [

@@ -13,7 +13,7 @@ use app\models\Registrasi;
 /* @var $searchModel app\models\RegistrasiSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Daftar Registrasi';
+$this->title = 'Daftar Protokol';
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
@@ -23,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="registrasi-index box box-primary">
 
     <div class="box-header">
-        <?= $this->render('_modal-ref-pasien'); ?>
+        <?= Html::a('<i class="fa fa-plus"></i> Tambah Protokol', ['create'], ['class' => 'btn btn-success btn-flat']) ?>
     </div>
 
     <div class="box-body">
@@ -61,6 +61,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute' => 'nama_pasien',
+                'label' => 'Protokol Uji',
                 'format' => 'raw',
                 'headerOptions' => ['style' => 'text-align:center;'],
                 'contentOptions' => ['style' => 'text-align:center;'],
@@ -99,7 +100,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
 
             [
-                'label'=>'Print Label',
+                'label'=>'Print Model CRF',
                 'encodeLabel' => false,
                 'format' => 'raw',
                 'value' => function($data){
@@ -110,7 +111,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
 
             [
-                'label'=>'Print Formulir',
+                'label'=>'Print Resume Set Up',
                 'encodeLabel' => false,
                 'format' => 'raw',
                 'value' => function($data){
