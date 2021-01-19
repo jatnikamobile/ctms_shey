@@ -129,5 +129,5 @@ if (YII_ENV_DEV) {
     ];
 }
 
-is_file(__DIR__.'/web-local.php') && require(__DIR__.'/web-local.php');
+is_file(__DIR__.'/config-env.php') && require(__DIR__.'/config-env.php');
 return $config;
