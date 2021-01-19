@@ -9,6 +9,10 @@ $config = [
     'bootstrap' => ['log'],
     'language' => 'id_ID',
     'timeZone' => 'Asia/Jakarta',
+    'aliases' => [
+        '@bower' => '@vendor/bower-asset',
+        '@npm'   => '@vendor/npm-asset',
+    ],
     'components' => [
         'view' => [
             'theme' => [
@@ -92,7 +96,7 @@ $config = [
     'params' => $params,
 ];
 
-if (YII_ENV_DEV) {
+if (!YII_ENV_TEST) {
     // configuration adjustments for 'dev' environment
     $config['bootstrap'][] = 'debug';
     $config['modules']['debug'] = [
@@ -100,7 +104,9 @@ if (YII_ENV_DEV) {
         // uncomment the following to add your IP if you are not connecting from localhost.
         //'allowedIPs' => ['127.0.0.1', '::1'],
     ];
+}
 
+if (YII_ENV_DEV) {
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
@@ -123,4 +129,5 @@ if (YII_ENV_DEV) {
     ];
 }
 
+is_file(__DIR__.'/web-local.php') && require(__DIR__.'/web-local.php');
 return $config;
