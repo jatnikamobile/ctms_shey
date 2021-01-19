@@ -1,6 +1,7 @@
 <?php 
 
 use app\models\UserRole;
+use yii\helpers\Url;
 
 ?>
 
@@ -13,6 +14,10 @@ use app\models\UserRole;
             ['label' => 'Register Protokol', 'icon' => 'list', 'url' => ['registrasi/index']],
             ['label' => 'Analisis Hasil Uji', 'icon' => 'circle-o', 'url' => ['registrasi/analisis-mcu']],
             ['label' => 'Resume Uji Klinis', 'icon' => 'check-square-o', 'url' => ['registrasi/resume-pasien']],
+            // ['label' => Yii::t('backend', 'External link'), 'icon' => 'check-square-o', 'url' => 'http://ctmspejaten.ddns.net:8282/modul_registrasi_rev/', 'template'=> '<a href="{url}" target="_blank">{label}</a>'],
+            // array('label' => 'Registrasi Subject', 'url' => array('http://ctmspejaten.ddns.net:8282/modul_registrasi_rev/'), 'linkOptions' => array('target'=>'_blank')),
+            ['label' => 'Enrollment','options' => ['class' => 'header']],
+            ['label' => 'Admission', 'icon' => 'check-square-o', 'url' => 'http://ctmspejaten.ddns.net:8282/modul_registrasi_rev/', 'template'=> '<a href="{url}" target="_blank">{label}</a>'],
             ['label' => 'MENU MASTER','options' => ['class' => 'header']],
             ['label' => 'Set Up Protokol ', 'icon' => 'circle-o', 'url' => ['pemeriksaan/index']],
             ['label' => 'Protokol Uji', 'icon' => 'circle-o', 'url' => ['paket/index']],
