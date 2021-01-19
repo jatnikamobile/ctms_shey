@@ -1,0 +1,11 @@
+<?php
+
+$config['name'] = 'RSAU Esnawan';
+
+$config['components']['db_rs'] = [
+    'class' => 'yii\db\Connection',
+    'dsn' => 'sqlsrv:server=localhost;database=dbRSHARJO',
+    'username' => 'sa',
+    'password' => 'SuperOne11',
+    'charset' => 'utf8',
+];
