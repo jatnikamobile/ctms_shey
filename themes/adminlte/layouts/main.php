@@ -1,8 +1,8 @@
 <?php
 use yii\helpers\Html;
 
-/* @var $this \yii\web\View */
-/* @var $content string */
+/** @var \yii\web\View $this */
+/** @var string $content */
 
 
 if (Yii::$app->controller->action->id === 'login') {
@@ -41,6 +41,7 @@ SCRIPT;
 
 
 $this->registerJs($tooltip, \yii\web\View::POS_READY);
+$this->registerJsFile('@web/js/helpers.js');
 
 $js = <<<SCRIPT
 /* To initialize BS3 tooltips set this below */
