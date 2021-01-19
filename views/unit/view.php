@@ -6,14 +6,14 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Unit */
 
-$this->title = "Detail Unit";
+$this->title = "Detail Phase";
 $this->params['breadcrumbs'][] = ['label' => 'Unit', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="unit-view box box-primary">
 
     <div class="box-header">
-        <h3 class="box-title">Detail Unit</h3>
+        <h3 class="box-title">Detail Phase</h3>
     </div>
 
     <div class="box-body">
@@ -43,7 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 
     <div class="box-footer">
-        <?= Html::a('<i class="fa fa-pencil"></i> Sunting Unit', ['update', 'id' => $model->id], ['class' => 'btn btn-success btn-flat']) ?>
+        <?= Html::a('<i class="fa fa-pencil"></i> Sunting Phase', ['update', 'id' => $model->id], ['class' => 'btn btn-success btn-flat']) ?>
         <?= Html::a('<i class="fa fa-list"></i> Daftar Unit', ['index'], ['class' => 'btn btn-warning btn-flat']) ?>
     </div>
 

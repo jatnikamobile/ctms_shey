@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Unit */
 
-$this->title = "Tambah Unit";
+$this->title = "Tambah Phase";
 $this->params['breadcrumbs'][] = ['label' => 'Unit', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

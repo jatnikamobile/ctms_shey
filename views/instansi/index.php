@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\InstansiSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Daftar Instansi';
+$this->title = 'Daftar Sponsor';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
         <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="instansi-index box box-primary">
 
     <div class="box-header">
-        <?= Html::a('<i class="fa fa-plus"></i> Tambah Instansi', ['create'], ['class' => 'btn btn-success btn-flat']) ?>
+        <?= Html::a('<i class="fa fa-plus"></i> Tambah Sponsor', ['create'], ['class' => 'btn btn-success btn-flat']) ?>
         <?= Html::a('<i class="fa fa-print"></i> Export Excel', Yii::$app->request->url.'&export=1', ['class' => 'btn btn-success btn-flat','target' => '_blank']) ?>
         <?php // Html::a('<i class="fa fa-print"></i> Export Pdf', Yii::$app->request->url.'&export-pdf=1', ['class' => 'btn btn-danger btn-flat','target' => '_blank']) ?>
 

@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\PemeriksaanSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Daftar Pemeriksaan';
+$this->title = 'Daftar Protokol';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
         <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="pemeriksaan-index box box-primary">
 
     <div class="box-header">
-        <?= Html::a('<i class="fa fa-plus"></i> Tambah Pemeriksaan', ['create'], ['class' => 'btn btn-success btn-flat']) ?>
+        <?= Html::a('<i class="fa fa-plus"></i> Tambah Protokol', ['create'], ['class' => 'btn btn-success btn-flat']) ?>
         <?php //Html::a('<i class="fa fa-print"></i> Export Excel', Yii::$app->request->url.'&export=1', ['class' => 'btn btn-success btn-flat','target' => '_blank']) ?>
         <?php //Html::a('<i class="fa fa-print"></i> Export Pdf', Yii::$app->request->url.'&export-pdf=1', ['class' => 'btn btn-danger btn-flat','target' => '_blank']) ?>
 

@@ -25,7 +25,7 @@ use yii\bootstrap\ActiveForm;
 <div class="instansi-form box box-primary">
 
     <div class="box-header">
-        <h3 class="box-title">Form Instansi</h3>
+        <h3 class="box-title">Form Sponsor</h3>
     </div>
 	<div class="box-body">
 

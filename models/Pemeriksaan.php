@@ -64,8 +64,8 @@ class Pemeriksaan extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'id_induk' => 'Induk',
-            'nama' => 'Nama',
-            'status_bmi' => 'Status BMI',
+            'nama' => 'Nama Protokol',
+            'status_bmi' => 'Parameter Protokol',
             'status_tekanan_darah' => 'Status Tekanan Darah'
         ];
     }

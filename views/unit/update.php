@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Unit */
 
-$this->title = "Sunting Unit";
+$this->title = "Sunting Phase";
 $this->params['breadcrumbs'][] = ['label' => 'Unit', 'url' => ['index']];
 $this->params['breadcrumbs'][] = 'Sunting';
 ?>

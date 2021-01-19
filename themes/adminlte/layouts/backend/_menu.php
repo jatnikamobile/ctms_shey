@@ -15,9 +15,9 @@ use app\models\UserRole;
             ['label' => 'Resume Uji Klinis', 'icon' => 'check-square-o', 'url' => ['registrasi/resume-pasien']],
             ['label' => 'MENU MASTER','options' => ['class' => 'header']],
             ['label' => 'Set Up Protokol ', 'icon' => 'circle-o', 'url' => ['pemeriksaan/index']],
-            ['label' => 'Parameter Protokol', 'icon' => 'circle-o', 'url' => ['paket/index']],
-            ['label' => 'Instansi', 'icon' => 'circle-o', 'url' => ['instansi/index']],
-            ['label' => 'Unit', 'icon' => 'circle-o', 'url' => ['unit/index']],
+            ['label' => 'Protokol Uji', 'icon' => 'circle-o', 'url' => ['paket/index']],
+            ['label' => 'Nama Sponsor', 'icon' => 'circle-o', 'url' => ['instansi/index']],
+            ['label' => 'Phase', 'icon' => 'circle-o', 'url' => ['unit/index']],
             [
                 'label' => 'Master ',
                 'icon' => 'thumb-tack',

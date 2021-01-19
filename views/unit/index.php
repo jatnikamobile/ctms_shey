@@ -8,7 +8,7 @@ use app\models\Instansi;
 /* @var $searchModel app\models\UnitSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Daftar Unit';
+$this->title = 'Daftar Phase';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
         <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="unit-index box box-primary">
 
     <div class="box-header">
-        <?= Html::a('<i class="fa fa-plus"></i> Tambah Unit', ['create'], ['class' => 'btn btn-success btn-flat']) ?>
+        <?= Html::a('<i class="fa fa-plus"></i> Tambah Phase', ['create'], ['class' => 'btn btn-success btn-flat']) ?>
         <?= Html::a('<i class="fa fa-print"></i> Export Excel', Yii::$app->request->url.'&export=1', ['class' => 'btn btn-success btn-flat','target' => '_blank']) ?>
         <?php // Html::a('<i class="fa fa-print"></i> Export Pdf', Yii::$app->request->url.'&export-pdf=1', ['class' => 'btn btn-danger btn-flat','target' => '_blank']) ?>
 

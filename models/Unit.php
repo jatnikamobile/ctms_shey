@@ -40,8 +40,8 @@ class Unit extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'instansi_id' => 'Nama Instansi',
-            'nama' => 'Nama Unit',
+            'instansi_id' => 'Nama Sponsor',
+            'nama' => 'Nama Phase',
         ];
     }
     public function getInstansi()

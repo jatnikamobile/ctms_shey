@@ -4,7 +4,7 @@ use app\components\Helper;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
-$this->title = "Hasil Pemeriksaan";
+$this->title = "Hasil Protokol";
 $this->params['breadcrumbs'][] = ['label' => 'Pemeriksaan', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="pemeriksaan-view box box-primary">
 
     <div class="box-header">
-        <h3 class="box-title">Detail Pemeriksaan</h3>
+        <h3 class="box-title">Detail Protokol</h3>
     </div>
 
     <div class="box-body">

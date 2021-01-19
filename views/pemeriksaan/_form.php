@@ -27,7 +27,7 @@ use yii\helpers\Html;
 <div class="pemeriksaan-form box box-primary">
 
     <div class="box-header">
-        <h3 class="box-title">Form Pemeriksaan</h3>
+        <h3 class="box-title">Form Protokol</h3>
     </div>
 	<div class="box-body">
         
@@ -36,7 +36,7 @@ use yii\helpers\Html;
         <?= $form->field($model, 'id_induk')->widget(Select2::classname(), [
             'data' =>  Pemeriksaan::getListIndukPemeriksaan(),
             'options' => [
-              'placeholder' => '- Pilih Induk Pemeriksaan -',
+              'placeholder' => '- Pilih Induk Protokol -',
               'disabled' => true
             ],
             'pluginOptions' => [
@@ -46,7 +46,7 @@ use yii\helpers\Html;
         
         <?= $form->field($model, 'nama')->textInput(['maxlength' => true]) ?>
 
-        <?= $form->field($model, 'status_bmi')->dropDownList([1 => 'BMI', 2 => 'Tekanan Darah', 3 => 'Dokter / Petugas Pemeriksa'], ['prompt' => '-- Pilih Status Pemeriksaan --']); ?>
+        <?= $form->field($model, 'status_bmi')->dropDownList([1 => 'Parameter 1', 2 => 'Parameter 2', 3 => 'Parameter 3'], ['prompt' => '-- Parameter --']); ?>
 
         <?= Html::hiddenInput('referrer',$referrer); ?>
 

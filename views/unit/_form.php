@@ -27,7 +27,7 @@ use kartik\select2\Select2;
 <div class="unit-form box box-primary">
 
     <div class="box-header">
-        <h3 class="box-title">Form Unit</h3>
+        <h3 class="box-title">Form Phase</h3>
     </div>
 	<div class="box-body">
 
@@ -36,7 +36,7 @@ use kartik\select2\Select2;
         <?= $form->field($model, 'instansi_id')->widget(Select2::classname(), [
             'data' =>  Instansi::getList(),
             'options' => [
-              'placeholder' => '- Pilih Instansi -',
+              'placeholder' => '- Pilih Sponsor -',
             ],
             'pluginOptions' => [
                 'allowClear' => true

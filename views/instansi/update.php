@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Instansi */
 
-$this->title = "Sunting Instansi";
+$this->title = "Sunting Sponsor";
 $this->params['breadcrumbs'][] = ['label' => 'Instansi', 'url' => ['index']];
 $this->params['breadcrumbs'][] = 'Sunting';
 ?>

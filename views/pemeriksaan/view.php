@@ -6,14 +6,14 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Pemeriksaan */
 
-$this->title = "Detail Pemeriksaan";
+$this->title = "Detail Protokol";
 $this->params['breadcrumbs'][] = ['label' => 'Pemeriksaan', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="pemeriksaan-view box box-primary">
 
     <div class="box-header">
-        <h3 class="box-title">Detail Pemeriksaan</h3>
+        <h3 class="box-title">Detail Protokol</h3>
     </div>
 
     <div class="box-body">
@@ -33,8 +33,8 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 
     <div class="box-footer">
-        <?= Html::a('<i class="fa fa-pencil"></i> Sunting Pemeriksaan', ['update', 'id' => $model->id], ['class' => 'btn btn-success btn-flat']) ?>
-        <?= Html::a('<i class="fa fa-list"></i> Daftar Pemeriksaan', ['index'], ['class' => 'btn btn-warning btn-flat']) ?>
+        <?= Html::a('<i class="fa fa-pencil"></i> Sunting Protokol', ['update', 'id' => $model->id], ['class' => 'btn btn-success btn-flat']) ?>
+        <?= Html::a('<i class="fa fa-list"></i> Daftar Protokol', ['index'], ['class' => 'btn btn-warning btn-flat']) ?>
     </div>
 
 </div>
