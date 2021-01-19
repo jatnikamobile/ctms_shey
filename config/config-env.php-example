@@ -2,6 +2,14 @@
 
 $config['name'] = 'RSAU Esnawan';
 
+empty($config['components']['db']) and $config['components']['db'] = [
+    'class' => 'yii\db\Connection',
+    'dsn' => 'mysql:host=localhost;dbname=microbiologi',
+    'username' => 'root',
+    'password' => 'satu2tiga',
+    'charset' => 'utf8',
+];
+
 $config['components']['db_rs'] = [
     'class' => 'yii\db\Connection',
     'dsn' => 'sqlsrv:server=localhost;database=dbRSHARJO',

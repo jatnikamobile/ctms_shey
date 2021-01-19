@@ -55,7 +55,7 @@ $config = [
                 ],
             ],
         ],
-        'db' => require(__DIR__ . '/db.php'),
+        'db' => is_file(__DIR__ . '/db.php') ? require(__DIR__ . '/db.php') : null,
         /*
         'urlManager' => [
             'enablePrettyUrl' => true,
