@@ -62,7 +62,7 @@ class PasienBelumPulangSearch extends FPPRI
     public function search($params)
     {
         $query = $this->getQuerySearch($params);
-        $query->andWhere(['not in', 'Regno', new Expression('select Regno from FPulang')]);
+        $query->andWhere(new Expression('Regno not in (select Regno from FPulang)'));
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
