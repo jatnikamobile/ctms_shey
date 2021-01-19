@@ -11,7 +11,7 @@ use yii\helpers\Url;
         'items' => [
             ['label' => 'MENU UTAMA','options' => ['class' => 'header']],
             ['label' => 'Dashboard', 'icon' => 'home', 'url' => ['/site/index']],
-            ['label' => 'Register Protokol', 'icon' => 'list', 'url' => ['registrasi/index']],
+            ['label' => 'Register Protokol', 'icon' => 'list', 'url' => ['protokol-uji/index']],
             ['label' => 'Analisis Hasil Uji', 'icon' => 'circle-o', 'url' => ['registrasi/analisis-mcu']],
             ['label' => 'Resume Uji Klinis', 'icon' => 'check-square-o', 'url' => ['registrasi/resume-pasien']],
             // ['label' => Yii::t('backend', 'External link'), 'icon' => 'check-square-o', 'url' => 'http://ctmspejaten.ddns.net:8282/modul_registrasi_rev/', 'template'=> '<a href="{url}" target="_blank">{label}</a>'],
