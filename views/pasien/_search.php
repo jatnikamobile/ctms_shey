@@ -11,24 +11,20 @@ use yii\widgets\ActiveForm;
 <div class="pasien-search">
 
     <?php $form = ActiveForm::begin([
+        'id' => 'search-form',
         'action' => ['index'],
         'method' => 'get',
     ]); ?>
     
     <div class="box box-primary">
         <div class="box-body">
-
-        </div>
-    </div>
-        <?= $form->field($model, 'id') ?>
-
-    <?= $form->field($model, 'nik') ?>
-
-    <?= $form->field($model, 'nama') ?>
-
-    <?= $form->field($model, 'alamat') ?>
-
-    <?= $form->field($model, 'tempat_lahir') ?>
+            <div class="row" style="margin-bottom:10px; margin-right:0;">
+                <div class="col-sm-4 col-xs-12" style="padding-right: 0px !important;">
+                    <?= $form->field($model, 'Diagnosa') ?>
+                </div>
+                <div class="col-sm-4 col-xs-12" style="padding-right: 0px !important;">
+                    <?= $form->field($model, 'usia') ?>
+                </div>
 
     <?php // echo $form->field($model, 'tanggal_lahir') ?>
 
@@ -39,9 +35,15 @@ use yii\widgets\ActiveForm;
     <?php // echo $form->field($model, 'no_telepon') ?>
 
     <?php // echo $form->field($model, 'status_kawin') ?>
+            </div>
 
-    <div class="col-sm-2 col-xs-12">
-        <?= Html::submitButton('<i class="fa fa-check"></i> Filter Data', ['class' => 'btn btn-primary btn-flat']) ?>
+            <div class="row" style="margin-bottom:10px; margin-right:0;">
+                <div class="col-xs-12">
+                    <?= Html::submitButton('<i class="fa fa-check"></i> Filter Data', ['class' => 'btn btn-primary btn-flat']) ?>
+                    <?= Html::button('<i class="fa fa-times"></i> Hapus', ['class' => 'btn btn-default clear btn-flat']) ?>
+                </div>
+            </div>
+        </div>
     </div>
 
     <?php ActiveForm::end(); ?>

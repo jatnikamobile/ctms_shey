@@ -5,18 +5,16 @@ namespace app\controllers;
 use Yii;
 use app\models\Pasien;
 use app\models\PasienSearch;
+use app\models\rs\PasienBelumPulangSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
-
-use app\components\Helper;
 use kartik\mpdf\Pdf;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\Style\Alignment;
 use PhpOffice\PhpSpreadsheet\Style\Border;
-use PhpOffice\PhpSpreadsheet\Style\Fill;
 
 /**
  * PasienController implements the CRUD actions for Pasien model.
@@ -70,7 +68,7 @@ class PasienController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new PasienSearch();
+        $searchModel = new PasienBelumPulangSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         if (Yii::$app->request->get('export')) {
