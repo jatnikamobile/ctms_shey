@@ -22,15 +22,6 @@ $config = [
         ],
         'db' => $db,
     ],
-    'controllerMap' => [
-        'migrate' => [
-            'class' => 'yii\console\controllers\MigrateController',
-            'migrationPath' => null,
-            'migrationNamespaces' => [
-                'app\migrations',
-            ],
-        ],
-    ],
     'params' => $params,
     /*
     'controllerMap' => [
@@ -39,13 +30,6 @@ $config = [
         ],
     ],
     */
-    'modules' => [
-        'forum' => [
-            'class' => 'app\modules\forum\Podium',
-            'userComponent' => 'user',
-            'adminId' => 1,
-        ],
-    ],
 ];
 
 if (YII_ENV_DEV) {
