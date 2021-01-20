@@ -43,7 +43,8 @@
         "kartik-v/yii2-field-range": "@dev",
         "kartik-v/yii2-tabs-x": "@dev",
         "yii2tech/ar-position": "^1.0",
-        "kartik-v/yii2-widget-fileinput": "@dev"
+        "kartik-v/yii2-widget-fileinput": "@dev",
+        "npm-asset/sweetalert": "^2.1"
     },
     "require-dev": {
         "yiisoft/yii2-gii": "~2.0.0",

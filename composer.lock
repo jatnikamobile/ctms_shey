@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "87cb0623475a795fe5cf99dc39cfe331",
+    "content-hash": "9689f898312a7acb6f6ad74a38481f37",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -2385,6 +2385,46 @@
             "time": "2020-11-13T09:40:50+00:00"
         },
         {
+            "name": "npm-asset/es6-object-assign",
+            "version": "1.1.0",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/es6-object-assign/-/es6-object-assign-1.1.0.tgz"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
+            "name": "npm-asset/promise-polyfill",
+            "version": "6.1.0",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/promise-polyfill/-/promise-polyfill-6.1.0.tgz"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
+            "name": "npm-asset/sweetalert",
+            "version": "2.1.2",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/sweetalert/-/sweetalert-2.1.2.tgz"
+            },
+            "require": {
+                "npm-asset/es6-object-assign": ">=1.1.0,<2.0.0",
+                "npm-asset/promise-polyfill": ">=6.0.2,<7.0.0"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
             "name": "paragonie/random_compat",
             "version": "v9.99.100",
             "source": {
@@ -4696,11 +4736,19 @@
                 "faker",
                 "fixtures"
             ],
-            "support": {
-                "issues": "https://github.com/FakerPHP/Faker/issues",
-                "source": "https://github.com/FakerPHP/Faker/tree/v1.13.0"
-            },
             "time": "2020-12-18T16:50:48+00:00"
+        },
+        {
+            "name": "npm-asset/bootstrap",
+            "version": "3.4.1",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/bootstrap/-/bootstrap-3.4.1.tgz"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
         },
         {
             "name": "phpspec/php-diff",
@@ -4738,9 +4786,6 @@
                 }
             ],
             "description": "A comprehensive library for generating differences between two hashable objects (strings or arrays).",
-            "support": {
-                "source": "https://github.com/phpspec/php-diff/tree/v1.1.3"
-            },
             "time": "2020-09-18T13:47:07+00:00"
         },
         {
@@ -4802,13 +4847,6 @@
                 "faker",
                 "yii2"
             ],
-            "support": {
-                "forum": "http://www.yiiframework.com/forum/",
-                "irc": "irc://irc.freenode.net/yii",
-                "issues": "https://github.com/yiisoft/yii2-faker/issues",
-                "source": "https://github.com/yiisoft/yii2-faker",
-                "wiki": "http://www.yiiframework.com/wiki/"
-            },
             "funding": [
                 {
                     "url": "https://github.com/yiisoft",
@@ -4872,13 +4910,6 @@
                 "gii",
                 "yii2"
             ],
-            "support": {
-                "forum": "http://www.yiiframework.com/forum/",
-                "irc": "irc://irc.freenode.net/yii",
-                "issues": "https://github.com/yiisoft/yii2-gii/issues",
-                "source": "https://github.com/yiisoft/yii2-gii",
-                "wiki": "http://www.yiiframework.com/wiki/"
-            },
             "time": "2018-12-08T10:07:49+00:00"
         }
     ],
@@ -4903,5 +4934,5 @@
     "platform-overrides": {
         "php": "7.1.0"
     },
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "1.1.0"
 }

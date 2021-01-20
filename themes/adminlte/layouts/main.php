@@ -1,4 +1,6 @@
 <?php
+
+use yii\bootstrap\BootstrapAsset;
 use yii\helpers\Html;
 
 /** @var \yii\web\View $this */
@@ -18,7 +20,7 @@ if (Yii::$app->controller->action->id === 'login') {
 
     
 app\assets\AppAsset::register($this);
-
+app\assets\SwalAsset::register($this);
 dmstr\web\AdminLteAsset::register($this);
 
 $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed2010/adminlte/dist');
@@ -39,9 +41,9 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed201
         });        
 SCRIPT;
 
-
 $this->registerJs($tooltip, \yii\web\View::POS_READY);
 $this->registerJsFile('@web/js/helpers.js');
+$this->registerJsFile('https://unpkg.com/wretch');
 
 $js = <<<SCRIPT
 /* To initialize BS3 tooltips set this below */

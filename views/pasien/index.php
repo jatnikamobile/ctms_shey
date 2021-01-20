@@ -2,8 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-use app\models\Instansi;
-use app\models\Unit;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\PasienSearch */
@@ -135,9 +134,44 @@ $this->params['breadcrumbs'][] = $this->title;
                 'header' => 'Masuk Kriteria',
                 'class' => \yii\grid\ActionColumn::class,
                 'contentOptions' => ['style' => 'text-align:center;width:80px'],
-                'template' => '<a href=#><span class="label label-success">Ya</span></a>',
+                'template' => '{mark}',
+                'buttons' => [
+                    'mark' => function($url, $model, $key) {
+                        return '<a href="#" class="mark-as-subject" data-regno="'.$key.'" data-nama="'.$model->Firstname.'"><span class="label label-success"><i class="fa fa-paper-plane"></i></span></a>';
+                    },
+                ],
             ],
         ],
     ]); ?>
     </div>
 </div>
+
+<?php
+$urlMark = Url::to(['mark-subject', '_'=>'_']);
+$this->registerJs("
+$('.mark-as-subject').click(ev => {
+    let data = ev.currentTarget.dataset
+    swal(`Masukkan \"\${data.nama}\" ke daftar subject`)
+    .then(confirm => {
+        if (!confirm) throw null;
+        // data[yii.getCsrfParam()] = yii.getCsrfToken()
+        return wretch(`$urlMark`)
+            .headers({'X-CSRF-Token': yii.getCsrfToken()})
+            .formUrl(data)
+            .post()
+            .json(json => {
+                console.info(json)
+                swal(`Success`,`success`);
+            })
+    })
+    .catch(err => {
+        console.error(err)
+        if (err) {
+            swal(`Oh noes!`, `The AJAX request failed!`, `error`);
+        } else {
+            swal.stopLoading();
+            swal.close();
+        }
+    });
+})
+");

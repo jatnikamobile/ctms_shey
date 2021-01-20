@@ -41,7 +41,7 @@ class Pasien extends \yii\db\ActiveRecord
     {
         return [
             [['id_pasien_instansi', 'id_pasien_unit', 'umur'], 'integer'],
-            [['nik', 'nama'], 'required'],
+            // [['nik', 'nama'], 'required'],
             [['alamat'], 'string'],
             [['tanggal_lahir'], 'safe'],
             [['nik', 'nama', 'tempat_lahir', 'status_kawin'], 'string', 'max' => 255],

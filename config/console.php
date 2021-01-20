@@ -1,7 +1,7 @@
 <?php
 
 $params = require(__DIR__ . '/params.php');
-$db = require(__DIR__ . '/db.php');
+$db = is_file(__DIR__ . '/db.php') ? require(__DIR__ . '/db.php') : null;
 
 $config = [
     'id' => 'basic-console',
@@ -40,4 +40,5 @@ if (YII_ENV_DEV) {
     ];
 }
 
+is_file(__DIR__.'/config-env.php') && require(__DIR__.'/config-env.php');
 return $config;

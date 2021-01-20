@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\Pasien;
 use app\models\PasienSearch;
+use app\models\rs\FPPRI;
 use app\models\rs\PasienBelumPulangSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -31,7 +32,7 @@ class PasienController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index','view','create','update','delete','import'],
+                        // 'actions' => ['index','view','create','update','delete','import'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -346,4 +347,29 @@ CSS;*/
         return $pdf->render();
     }
 
+    public function actionMarkSubject()
+    {
+        $regno = Yii::$app->request->getBodyParam('regno');
+        $pasien_simrs = FPPRI::findOne($regno);
+
+        if (empty($pasien_simrs)) {
+            return $this->asJson(new NotFoundHttpException());
+        }
+
+        $pasien = Pasien::findOne(['regno' => $regno]);
+        if ($pasien) {
+            $pasien->status = 1;
+            $res = $pasien->update(false);
+        } else {
+            $pasien = new Pasien([
+                'regno' => $regno,
+                'status' => 1,
+                'nik' => 0,
+                'nama' => $pasien_simrs->Firstname,
+            ]);
+            $res = $pasien->insert(false);
+        }
+
+        return $this->asJson($res);
+    }
 }
