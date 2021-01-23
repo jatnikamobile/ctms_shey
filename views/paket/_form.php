@@ -1,5 +1,7 @@
 <?php
 
+use app\models\ProtokolUji;
+use kartik\select2\Select2;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
@@ -31,7 +33,9 @@ use yii\bootstrap\ActiveForm;
 
         <?= $form->errorSummary($model); ?>
 
-        <?= $form->field($model, 'nama')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'id_protokol_uji')->widget(Select2::class, [
+            'data' => ProtokolUji::getList(),
+        ]) ?>
 
         <?= Html::hiddenInput('referrer',$referrer); ?>
 

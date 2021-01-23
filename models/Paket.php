@@ -29,7 +29,8 @@ class Paket extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nama'], 'required'],
+            [['id_protokol_uji'], 'integer'],
+            [['id_protokol_uji','nama'], 'safe'],
             [['nama'], 'string', 'max' => 255],
         ];
     }
