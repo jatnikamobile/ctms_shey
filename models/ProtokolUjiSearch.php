@@ -20,7 +20,7 @@ class ProtokolUjiSearch extends ProtokolUji
     public function rules()
     {
         return [
-            [['phase','id_instansi','id_paket'], 'integer'],
+            [['phase','id_instansi'], 'integer'],
             [['nama','tanggal_awal','tanggal_akhir'], 'safe'],
         ];
     }
@@ -47,8 +47,7 @@ class ProtokolUjiSearch extends ProtokolUji
         $query = ProtokolUji::find()->alias('pu');
 
         $query->leftJoin(Instansi::tableName().' i', 'i.id=id_instansi');
-        $query->leftJoin(Paket::tableName().' p', 'p.id=id_paket');
-        $query->select('pu.*, i.nama _instansi, p.nama _paket');
+        $query->select('pu.*, i.nama _instansi');
 
         $this->load($params);
 
@@ -58,14 +57,13 @@ class ProtokolUjiSearch extends ProtokolUji
         $query->andFilterWhere([
             'id' => $this->id,
             'id_instansi' => $this->id_instansi,
-            'id_paket' => $this->id_paket,
         ]);
 
         $query->andFilterWhere(['like', 'pu.nama', $this->nama]);
 
         return $query;
     }
-    
+
     public function search($params)
     {
         $query = $this->getQuerySearch($params);

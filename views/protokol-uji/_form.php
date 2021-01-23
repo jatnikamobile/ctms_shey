@@ -69,30 +69,22 @@ $referrer = $_POST['referrer'] ?? Yii::$app->request->referrer ?? Url::to(['inde
                     ])->widget(Select2::class, [
                         'data' =>  Instansi::getList(),
                         'options' => [
-                        'placeholder' => '- Pilih Instansi -',
+                            'placeholder' => '- Pilih Instansi -',
                         ],
                         'pluginOptions' => [
                             'allowClear' => true
                         ],
                     ])->label('Klinik Penguji'); ?>
 
-                <?= $form->field($model, 'id_paket',
+                <?= $form->field($model, 'deskripsi',
                     [
                         'horizontalCssClasses' => [
-                                'label' => 'col-sm-4',
-                                'wrapper' => 'col-sm-8',
-                                'error' => '',
-                                'hint' => '',
+                            'label' => 'col-sm-4',
+                            'wrapper' => 'col-sm-8',
+                            'error' => '',
+                            'hint' => '',
                         ],
-                    ])->widget(Select2::class, [
-                                'data' => Paket::getList(),
-                                'options' => [
-                                'placeholder' => '- Pilih Paket -',
-                                ],
-                                'pluginOptions' => [
-                                    'allowClear' => true
-                                ],
-                    ])->label('Protokol Uji') ?>
+                    ])->textarea()->label('Protokol Uji') ?>
 
                 <?php
                 $model->tanggal = date('Y-m-d', $model->tanggal ? strtotime($model->tanggal) : time());

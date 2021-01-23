@@ -43,7 +43,8 @@ class ProtokolUji extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nama','id_instansi','id_paket','tanggal'], 'required'],
+            [['nama','id_instansi','tanggal'], 'required'],
+            [['deskripsi'], 'safe'],
             [['tanggal'], 'date', 'format'=>'php:Y-m-d'],
         ];
     }
@@ -61,8 +62,8 @@ class ProtokolUji extends \yii\db\ActiveRecord
         ];
     }
 
-    public static function getList() {
-        return \yii\helpers\ArrayHelper::map(self::find()->all(), 'id','nama');
+    public static function getList($labelAttr = 'nama') {
+        return \yii\helpers\ArrayHelper::map(self::find()->all(), 'id',$labelAttr);
     }
 
     public static function getCount()

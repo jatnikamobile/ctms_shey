@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'contentOptions' => ['style' => 'text-align:center']
             ],
             [
-                'label' => 'No. Uji',
+                'label' => 'Kode Uji',
                 'headerOptions' => ['style' => 'text-align:center; width:80px'],
                 'contentOptions' => ['style' => 'text-align:center;'],
                 'value' => function($data) {
@@ -69,14 +69,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 'contentOptions' => ['style' => 'text-align:center;'],
                 'value' => function($data) {return $data->_instansi; },
             ],
-            [
-                'attribute' => 'id_paket',
-                'format' => 'raw',
-                // 'filter' => Paket::getList(),
-                'headerOptions' => ['style' => 'text-align:center;'],
-                'contentOptions' => ['style' => 'text-align:center;'],
-                'value' => function($data) {return $data->_paket; },
-            ],
+            // [
+            //     'attribute' => 'id_paket',
+            //     'label' => 'Center',
+            //     'headerOptions' => ['style' => 'text-align:center;'],
+            //     'contentOptions' => ['style' => 'text-align:center;'],
+            //     'value' => function($data) {return $data->_paket; },
+            // ],
 
             [
                 'label'=>'Cetak Model CRF',

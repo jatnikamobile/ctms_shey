@@ -49,15 +49,15 @@ $allow_button = 0;
                             'headerOptions' => ['style' => 'text-align:center;'],
                             'contentOptions' => ['style' => 'text-align:center;'],
                         ],
-                        // [
-                        //     'attribute' => 'paket_id',
-                        //     // 'format' => 'raw',
-                        //     'value' => function($data) {
-                        //         return '<span class="label label-success">'. @$data->paket->nama . '</span>';
-                        //     },
-                        //     'headerOptions' => ['style' => 'text-align:center;'],
-                        //     'contentOptions' => ['style' => 'text-align:center;'],
-                        // ],
+                        [
+                            'attribute' => 'deskripsi',
+                            // 'format' => 'raw',
+                            // 'value' => function($data) {
+                            //     return '<span class="label label-success">'. @$data->deskripsi . '</span>';
+                            // },
+                            'headerOptions' => ['style' => 'text-align:center;'],
+                            'contentOptions' => ['style' => 'text-align:center;'],
+                        ],
                         [
                             'attribute' => 'tanggal',
                             'format' => 'raw',
@@ -70,6 +70,7 @@ $allow_button = 0;
                     ],
                 ]) ?>
             </div>
+            <?php /*
             <div class="col-sm-5">
                 <?= DetailView::widget([
                     'model' => $model,
@@ -88,6 +89,7 @@ $allow_button = 0;
                     ],
                 ]) ?>
             </div>
+            */?>
         </div>
     </div>
 
@@ -97,18 +99,6 @@ $allow_button = 0;
     <div class="box-footer">
         <?= Html::a('<i class="fa fa-pencil"></i> Sunting Protokol', ['update', 'id' => $model->id], ['class' => 'btn btn-primary btn-flat']) ?>
         <?= Html::a('<i class="fa fa-list"></i> Daftar Protokol', ['index'], ['class' => 'btn btn-warning btn-flat']) ?>
-        <div>&nbsp;</div>
-
-        <?= $this->render('pemeriksaan-tabs',[
-            'model' => $model,
-            'modelPemeriksaanRincianHasil' => $modelPemeriksaanRincianHasil,
-            'disabled' => false,
-            'allow_button' => $allow_button,
-        ]) ?>
-
-        <?php /*$this->render('tabs-pemeriksaan',[
-            'model' => $model,
-            'buttonAction' => true
-        ])*/ ?>
+        <?= Html::a('<i class="fa fa-list"></i> Setup Parameter', ['protokol-param/update', 'protokol_id'=>$model->id], ['class' => 'btn btn-success btn-flat']) ?>
     </div>
 </div>

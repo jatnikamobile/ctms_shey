@@ -56,13 +56,9 @@ use kartik\select2\Select2;
                     ]) ?>
                 </div>
                 <div class="col-sm-4 col-xs-12" style="padding-right:0">
-                    <?= $form->field($model, 'id_paket')->widget(Select2::class, [
-                        'data' => Paket::getList(),
-                        'options' => ['placeholder' => '-- Pilih --'],
-                    ]) ?>
+                    <?= $form->field($model, 'phase')->dropDownList(['-- Pilih --',1,2,3]) ?>
                 </div>
                 <div class="col-sm-4 col-xs-12" style="padding-right:0">
-                    <?= $form->field($model, 'phase')->dropDownList(['-- Pilih --',1,2,3]) ?>
                 </div>
             </div>
             <div class="row">
