@@ -27,7 +27,7 @@ use Yii;
 class ProtokolUji extends \yii\db\ActiveRecord
 {
     public $_instansi;
-    public $_paket;
+    public $_sponsor;
 
     /**
      * {@inheritdoc}

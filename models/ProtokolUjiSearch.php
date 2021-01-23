@@ -47,7 +47,8 @@ class ProtokolUjiSearch extends ProtokolUji
         $query = ProtokolUji::find()->alias('pu');
 
         $query->leftJoin(Instansi::tableName().' i', 'i.id=id_instansi');
-        $query->select('pu.*, i.nama _instansi');
+        $query->leftJoin(Sponsor::tableName().' s', 's.id=id_sponsor');
+        $query->select('pu.*, i.nama _instansi, s.nama _sponsor');
 
         $this->load($params);
 
@@ -57,6 +58,7 @@ class ProtokolUjiSearch extends ProtokolUji
         $query->andFilterWhere([
             'id' => $this->id,
             'id_instansi' => $this->id_instansi,
+            'id_sponsor' => $this->id_sponsor,
         ]);
 
         $query->andFilterWhere(['like', 'pu.nama', $this->nama]);

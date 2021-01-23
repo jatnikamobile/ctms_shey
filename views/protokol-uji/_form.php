@@ -5,6 +5,7 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use app\models\Pasien;
 use app\models\Paket;
+use app\models\Sponsor;
 use kartik\select2\Select2;
 use kartik\date\DatePicker;
 use yii\helpers\Url;
@@ -67,7 +68,7 @@ $referrer = $_POST['referrer'] ?? Yii::$app->request->referrer ?? Url::to(['inde
                             'hint' => '',
                         ],
                     ])->widget(Select2::class, [
-                        'data' =>  Instansi::getList(),
+                        'data' => Instansi::getList(),
                         'options' => [
                             'placeholder' => '- Pilih Instansi -',
                         ],
@@ -85,6 +86,24 @@ $referrer = $_POST['referrer'] ?? Yii::$app->request->referrer ?? Url::to(['inde
                             'hint' => '',
                         ],
                     ])->textarea()->label('Protokol Uji') ?>
+
+                <?= $form->field($model, 'id_sponsor',
+                    [
+                        'horizontalCssClasses' => [
+                            'label' => 'col-sm-4',
+                            'wrapper' => 'col-sm-8',
+                            'error' => '',
+                            'hint' => '',
+                        ],
+                    ])->widget(Select2::class, [
+                        'data' => Sponsor::getList(),
+                        'options' => [
+                            'placeholder' => '- Pilih Sponsor -',
+                        ],
+                        'pluginOptions' => [
+                            'allowClear' => true
+                        ],
+                    ])->label('Sponsor'); ?>
 
                 <?php
                 $model->tanggal = date('Y-m-d', $model->tanggal ? strtotime($model->tanggal) : time());

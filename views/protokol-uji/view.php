@@ -59,6 +59,15 @@ $allow_button = 0;
                             'contentOptions' => ['style' => 'text-align:center;'],
                         ],
                         [
+                            'attribute' => 'id_sponsor',
+                            'label' => 'Sponsor',
+                            'value' => function($data) {
+                                return $data->_sponsor;
+                            },
+                            'headerOptions' => ['style' => 'text-align:center;'],
+                            'contentOptions' => ['style' => 'text-align:center;'],
+                        ],
+                        [
                             'attribute' => 'tanggal',
                             'format' => 'raw',
                             'value' => function($data) {
