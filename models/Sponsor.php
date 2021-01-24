@@ -12,11 +12,6 @@ use Yii;
  */
 class Sponsor extends \yii\db\ActiveRecord
 {
-    public $username;
-    public $password;
-    public $password_konfirmasi;
-    public $email;
-
     /**
      * {@inheritdoc}
      */
@@ -61,14 +56,4 @@ class Sponsor extends \yii\db\ActiveRecord
     {
         return $this->hasOne(User::className(), ['id_instansi' => 'id']);
     }
-	
-	public function setNomorInstansi()
-	{
-		$no_max = Instansi::find()
-		->max("kode");
-		// echo '<pre>'; print_r($no_max); echo '</pre>'; die();
-		$no_max += 1;
-		
-		return $no_max;
-	}	
 }
