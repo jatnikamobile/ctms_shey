@@ -15,12 +15,12 @@ use yii\web\AssetBundle;
  */
 class SwalAsset extends AssetBundle
 {
-    public $sourcePath = '@npm/sweetalert/dist';
+    public $sourcePath = '@npm/sweetalert2/dist';
     public $css = [
         // 'sweetalert.css',
     ];
     public $js = [
-        'sweetalert.min.js',
+        'sweetalert2.all.min.js',
     ];
     public $depends = [
         'yii\bootstrap\BootstrapAsset',

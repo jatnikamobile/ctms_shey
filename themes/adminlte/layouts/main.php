@@ -42,7 +42,7 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed201
 SCRIPT;
 
 $this->registerJs($tooltip, \yii\web\View::POS_READY);
-$this->registerJsFile('@web/js/helpers.js');
+$this->registerJsFile('@web/js/helpers.js', ['depends' => 'app\assets\SwalAsset']);
 $this->registerJsFile('https://unpkg.com/wretch');
 
 $js = <<<SCRIPT

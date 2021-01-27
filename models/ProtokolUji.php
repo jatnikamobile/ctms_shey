@@ -43,9 +43,9 @@ class ProtokolUji extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nama','id_instansi','tanggal'], 'required'],
+            [['nama','id_instansi'], 'required'],
             [['deskripsi'], 'safe'],
-            [['tanggal'], 'date', 'format'=>'php:Y-m-d'],
+            // [['tanggal'], 'date', 'format'=>'php:Y-m-d'],
         ];
     }
 
@@ -174,4 +174,8 @@ class ProtokolUji extends \yii\db\ActiveRecord
 
     }
 
+    public function getManyDokumen()
+    {
+        return $this->hasMany(DokumenProtokol::class, ['id_protokol' => 'id']);
+    }
 }

@@ -22,6 +22,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\UploadedFile;
 use Yii;
+use yii\data\ActiveDataProvider;
 
 class ProtokolUjiController extends Controller
 {
@@ -209,7 +210,6 @@ class ProtokolUjiController extends Controller
 
         $modelPemeriksaanRincianHasil = new PemeriksaanRincianHasil();
         $modelPemeriksaanRincianHasil->id_registrasi = $model->id;
-        
 
         if ($modelPemeriksaanRincianHasil->load(Yii::$app->request->post())) {
             if ($modelPemeriksaanRincianHasil->file !== null) {
@@ -227,7 +227,7 @@ class ProtokolUjiController extends Controller
                 // Upload Lampiran 
                 $modelPemeriksaanRincianHasil->uploadLampiran($model->id, $arrayFile);
             }
-            
+
             // Save / Update Pemeriksaan (Melakukan Pengecekan Apakah Pemeriksaan Rincian Hasil Sudah Diisi Atau Belum)
             $modelPemeriksaanRincianHasil->savePemeriksaanRincianHasil($model->id, Yii::$app->request->post('pilihan'));
 
@@ -238,7 +238,8 @@ class ProtokolUjiController extends Controller
 
         return $this->render('view', [
             'model' => $model,
-            'modelPemeriksaanRincianHasil' => $modelPemeriksaanRincianHasil 
+            'modelPemeriksaanRincianHasil' => $modelPemeriksaanRincianHasil,
+            'dpDoks' => new ActiveDataProvider(['query' => $model->getManyDokumen()]),
         ]);
     }
 
@@ -256,7 +257,7 @@ class ProtokolUjiController extends Controller
             // $model->no_urut = $model->setNomorUrut($model->id_pasien_instansi);
             // $model->no_registrasi = $model->setNomorRegistrasi();
             // $model->no_mcu = $model->instansi->kode.sprintf("%04s", $model->setNomorMcu($model->id_pasien_instansi));
-            $referrer = $_POST['referrer'];
+            // $referrer = $_POST['referrer'];
 
             // if ($model->pasien_id == null) {
             //     $model->generatePasien();
@@ -267,9 +268,8 @@ class ProtokolUjiController extends Controller
             // }
 
             if($model->save()) {
-
                 Yii::$app->session->setFlash('success','Data berhasil disimpan.');
-                return $this->redirect($referrer);
+                return $this->redirect(['view', 'id' => $model->id]);
             }
 
             Yii::$app->session->setFlash('error','Data gagal disimpan. Silahkan periksa kembali isian Anda.');
@@ -296,7 +296,7 @@ class ProtokolUjiController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             if($model->save()) {
                 Yii::$app->session->setFlash('success','Data berhasil disimpan.');
-                return $this->redirect($_POST['referrer']);
+                return $this->redirect(['view', 'id' => $model->id]);
             }
 
             Yii::$app->session->setFlash('error','Data gagal disimpan. Silahkan periksa kembali isian Anda.');
@@ -330,7 +330,7 @@ class ProtokolUjiController extends Controller
      * Finds the Registrasi model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Registrasi the loaded model
+     * @return ProtokolUji the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)

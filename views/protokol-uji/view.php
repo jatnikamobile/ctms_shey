@@ -3,15 +3,20 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use app\components\Helper;
+use app\models\DokumenProtokol;
+use kartik\grid\GridView;
+use yii\helpers\Url;
+use yii\widgets\Pjax;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\Registrasi */
+/** @var yii\web\View $this */
+/** @var app\models\Registrasi $model */
 
 $this->title = "Detail Data Protokol";
 $this->params['breadcrumbs'][] = ['label' => 'Protokol', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 $allow_button = 0;
 ?>
+
 <div class="registrasi-view box box-primary">
     <div class="box-header">
         <h3 class="box-title">Detail Data Protokol</h3>
@@ -19,8 +24,8 @@ $allow_button = 0;
 
     <div class="box-body">
 
-    <div class="row">
-        <div class="col-sm-12">
+    <!-- <div class="row">
+        <div class="col-sm-12"> -->
             <div class="col-sm-7">
                 <?= DetailView::widget([
                     'model' => $model,
@@ -67,15 +72,15 @@ $allow_button = 0;
                             'headerOptions' => ['style' => 'text-align:center;'],
                             'contentOptions' => ['style' => 'text-align:center;'],
                         ],
-                        [
-                            'attribute' => 'tanggal',
-                            'format' => 'raw',
-                            'value' => function($data) {
-                                return Helper::getTanggalSingkat($data->tanggal);
-                            },
-                            'headerOptions' => ['style' => 'text-align:center; width: 120px'],
-                            'contentOptions' => ['style' => 'text-align:center;'],
-                        ],
+                        // [
+                        //     'attribute' => 'tanggal',
+                        //     'format' => 'raw',
+                        //     'value' => function($data) {
+                        //         return Helper::getTanggalSingkat($data->tanggal);
+                        //     },
+                        //     'headerOptions' => ['style' => 'text-align:center; width: 120px'],
+                        //     'contentOptions' => ['style' => 'text-align:center;'],
+                        // ],
                     ],
                 ]) ?>
             </div>
@@ -99,15 +104,14 @@ $allow_button = 0;
                 ]) ?>
             </div>
             */?>
-        </div>
-    </div>
-
-
+            <!-- </div>
+        </div> -->
     </div>
 
     <div class="box-footer">
         <?= Html::a('<i class="fa fa-pencil"></i> Sunting Protokol', ['update', 'id' => $model->id], ['class' => 'btn btn-primary btn-flat']) ?>
         <?= Html::a('<i class="fa fa-list"></i> Daftar Protokol', ['index'], ['class' => 'btn btn-warning btn-flat']) ?>
-        <?= Html::a('<i class="fa fa-list"></i> Setup Parameter', ['protokol-param/update', 'protokol_id'=>$model->id], ['class' => 'btn btn-success btn-flat']) ?>
     </div>
 </div>
+
+<?= $this->render('../dok-protokol/index', ['dpDoks'=>$dpDoks, 'id_protokol'=>$model->id]) ?>

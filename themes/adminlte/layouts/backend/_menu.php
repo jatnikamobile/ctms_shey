@@ -9,9 +9,24 @@ use yii\helpers\Url;
     [
         'options' => ['class' => 'sidebar-menu', 'data-widget' => 'tree'],
         'items' => [
-            ['label' => 'MENU UTAMA','options' => ['class' => 'header']],
-            ['label' => 'Dashboard', 'icon' => 'home', 'url' => ['/site/index']],
-            ['label' => 'Register Protokol', 'icon' => 'list', 'url' => ['protokol-uji/index']],
+            // ['label' => 'SETUP','options' => ['class' => 'header']],
+            // ['label' => 'Dashboard', 'icon' => 'home', 'url' => ['/site/index']],
+
+            // ['label' => 'Protokol Manag','options' => ['class' => 'header']],
+            // ['label' => 'Templet Form', 'icon' => 'circle-o', 'url' => ['templet-form/index']],
+            // ['label' => 'Pengujian', 'icon' => 'circle-o', 'url' => ['pasien/index', 'status' => 1]],
+
+            [
+                'label' => 'SETUP',
+                'icon' => 'thumb-tack',
+                'url' => '#',
+                'items' => [
+                    ['label' => 'Protokol', 'icon' => 'circle-o', 'url' => ['protokol-uji/index']],
+                    ['label' => 'Parameter', 'icon' => 'circle-o', 'url' => ['templet-form/index']],
+                    // ['label' => 'Subject Sesuai Kriteria', 'icon' => 'circle-o', 'url' => ['pasien/index', 'status' => 1]],
+                ],
+            ],
+
             // [
             //     'label' => 'Rekrut Subject',
             //     'icon' => 'thumb-tack',
@@ -28,6 +43,7 @@ use yii\helpers\Url;
             // ['label' => 'Enrollment','options' => ['class' => 'header']],
             // ['label' => 'Admission', 'icon' => 'check-square-o', 'url' => 'http://ctmspejaten.ddns.net:8282/modul_registrasi_rev/', 'template'=> '<a href="{url}" target="_blank">{label}</a>'],
             // ['label' => 'Phase', 'icon' => 'circle-o', 'url' => ['unit/index']],
+            ['label' => '','options' => ['class' => 'header']],
             [
                 'label' => 'Enrollment',
                 'icon' => 'thumb-tack',
@@ -44,7 +60,6 @@ use yii\helpers\Url;
                 'icon' => 'thumb-tack',
                 'url' => '#',
                 'items' => [
-                    ['label' => 'Parameter Template', 'icon' => 'circle-o', 'url' => ['paket/index']],
                     ['label' => 'Sponsor', 'icon' => 'circle-o', 'url' => ['sponsor/index']],
                     // ['label' => 'Set Up Protokol ', 'icon' => 'circle-o', 'url' => ['pemeriksaan/index']],
                     ['label' => 'Pasien', 'icon' => 'circle-o', 'url' => ['pasien/index']],
