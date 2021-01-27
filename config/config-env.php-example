@@ -1,7 +1,5 @@
 <?php
 
-$config['name'] = 'RSAU Esnawan';
-
 empty($config['components']['db']) and $config['components']['db'] = [
     'class' => 'yii\db\Connection',
     'dsn' => 'mysql:host=localhost;dbname=microbiologi',
