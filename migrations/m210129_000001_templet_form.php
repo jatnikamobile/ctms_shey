@@ -2,13 +2,25 @@
 
 use yii\db\Migration;
 
-class m210129_000000_templet_form extends Migration
+class m210129_000001_templet_form extends Migration
 {
     /**
      * {@inheritdoc}
      */
     public function safeUp()
     {
+        try {
+            $this->execute("
+                CREATE TABLE `form` (
+                `id` bigint(20) NOT NULL AUTO_INCREMENT,
+                `kode` text COLLATE utf8mb4_unicode_ci NOT NULL,
+                `nama` text COLLATE utf8mb4_unicode_ci NOT NULL,
+                `deskripsi` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+                PRIMARY KEY (`id`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+            ");
+        } catch (\Exception $e) {}
+
         try {
             $this->execute("
                 CREATE TABLE `parameter` (
