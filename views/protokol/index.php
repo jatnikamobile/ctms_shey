@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="registrasi-index box box-primary">
 
     <div class="box-header">
-        <?= Html::a('<i class="fa fa-plus"></i> Tambah Protokol Baru', ['protokol-uji/create'], ['class' => 'btn btn-success btn-flat']) ?>
+        <?= Html::a('<i class="fa fa-plus"></i> Tambah Protokol Baru', ['protokol/create'], ['class' => 'btn btn-success btn-flat']) ?>
     </div>
 
     <div class="box-body">

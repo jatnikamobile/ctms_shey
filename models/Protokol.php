@@ -24,7 +24,7 @@ use Yii;
  * @property string $id_pasien_pekerjaan
  * @property string $id_pasien_pendidikan
  */
-class ProtokolUji extends \yii\db\ActiveRecord
+class Protokol extends \yii\db\ActiveRecord
 {
     use ListableTrait;
 
@@ -36,7 +36,7 @@ class ProtokolUji extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'protokol_uji';
+        return 'protokol';
     }
 
     /**

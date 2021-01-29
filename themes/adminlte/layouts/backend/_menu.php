@@ -21,7 +21,7 @@ use yii\helpers\Url;
                 'icon' => 'thumb-tack',
                 'url' => '#',
                 'items' => [
-                    ['label' => 'Protokol', 'icon' => 'circle-o', 'url' => ['protokol-uji/index']],
+                    ['label' => 'Protokol', 'icon' => 'circle-o', 'url' => ['protokol/index']],
                     ['label' => 'Parameter', 'icon' => 'circle-o', 'url' => ['templet-form/index']],
                     // ['label' => 'Subject Sesuai Kriteria', 'icon' => 'circle-o', 'url' => ['pasien/index', 'status' => 1]],
                 ],

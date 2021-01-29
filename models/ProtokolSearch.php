@@ -10,7 +10,7 @@ use app\models\Pasien;
 /**
  * PasienSearch represents the model behind the search form of `app\models\Pasien`.
  */
-class ProtokolUjiSearch extends ProtokolUji
+class ProtokolSearch extends Protokol
 {
     public $tanggal_awal;
     public $tanggal_akhir;
@@ -44,7 +44,7 @@ class ProtokolUjiSearch extends ProtokolUji
 
     public function getQuerySearch($params)
     {
-        $query = ProtokolUji::find()->alias('pu');
+        $query = Protokol::find()->alias('pu');
 
         $query->leftJoin(Instansi::tableName().' i', 'i.id=id_instansi');
         $query->leftJoin(Sponsor::tableName().' s', 's.id=id_sponsor');
@@ -70,15 +70,15 @@ class ProtokolUjiSearch extends ProtokolUji
     {
         $query = $this->getQuerySearch($params);
 
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);        
+
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails
             // $query->where('0=1');
             return $dataProvider;
         }
-
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-        ]);        
 
         return $dataProvider;
     }
