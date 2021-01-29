@@ -8,24 +8,20 @@ use yii\helpers\Html;
 
 
 if (Yii::$app->controller->action->id === 'login') {
-/**
- * Do not use this code in your template. Remove it.
- * Instead, use the code  $this->layout = '//main-login'; in your controller.
- */
-    echo $this->render(
+    return print $this->render(
         'main-login',
         ['content' => $content]
     );
-} else {
+}
 
-    
-app\assets\AppAsset::register($this);
-app\assets\SwalAsset::register($this);
+
 dmstr\web\AdminLteAsset::register($this);
+app\assets\DynamicAsset::register($this, 'Swal2', '@npm/sweetalert2/dist', 'sweetalert2.all.min.js');
+app\assets\AppAsset::register($this);
 
 $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed2010/adminlte/dist');
 
-    $tooltip = <<< SCRIPT
+$tooltip = <<< SCRIPT
         $('body').tooltip({
             selector: '[data-toggle="tooltip"]'
         });
@@ -42,7 +38,7 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed201
 SCRIPT;
 
 $this->registerJs($tooltip, \yii\web\View::POS_READY);
-$this->registerJsFile('@web/js/helpers.js', ['depends' => 'app\assets\SwalAsset']);
+$this->registerJsFile('@web/js/helpers.js', ['depends'=>'Swal2']);
 $this->registerJsFile('https://unpkg.com/wretch');
 
 $js = <<<SCRIPT
@@ -63,37 +59,39 @@ $collapse = (Yii::$app->controller->action->id == "resume-pasien") ? "sidebar-co
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
+
 <head>
-    <meta charset="<?= Yii::$app->charset ?>"/>
+    <meta charset="<?= Yii::$app->charset ?>" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
+
 <body class="hold-transition skin-blue sidebar-mini <?= $collapse ?>">
-<?php $this->beginBody() ?>
-<div class="wrapper">
+    <?php $this->beginBody() ?>
+    <div class="wrapper">
 
-    <?= $this->render(
-        'backend/header.php',
-        ['directoryAsset' => $directoryAsset]
-    ) ?>
+        <?= $this->render(
+            'backend/header.php',
+            ['directoryAsset' => $directoryAsset]
+        ) ?>
 
-    <?= $this->render(
-        'backend/left.php',
-        ['directoryAsset' => $directoryAsset]
-    )
-    ?>
+        <?= $this->render(
+            'backend/left.php',
+            ['directoryAsset' => $directoryAsset]
+        )
+        ?>
 
-    <?= $this->render(
-        'backend/content.php',
-        ['content' => $content, 'directoryAsset' => $directoryAsset]
-    ) ?>
+        <?= $this->render(
+            'backend/content.php',
+            ['content' => $content, 'directoryAsset' => $directoryAsset]
+        ) ?>
 
-</div>
+    </div>
 
-<?php $this->endBody() ?>
+    <?php $this->endBody() ?>
 </body>
+
 </html>
 <?php $this->endPage() ?>
-<?php } ?>

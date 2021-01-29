@@ -1,0 +1,7 @@
+.ss-main{padding:0 !important}
+.ss-content .ss-list .ss-option{padding:4px 10px}
+.ss-single-selected .placeholder *{overflow:visible !important}
+.ss-single-selected .placeholder .remove{display:none}
+.ss-main .ss-single-selected{height:100%; border-radius:0; border:none; padding:4px 10px}
+.ss-option .remove{padding: 0 7px;width: 24px;border: 1px solid #dcdee2;border-radius: 3px;font-weight:bold;float:right;z-index:1020;position:relative}
+.ss-option .remove:hover{background:#f88}

@@ -15,28 +15,24 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": ">=5.6.15",
+        "php": ">=7",
         "dmstr/yii2-adminlte-asset": ">2",
-        "kartik-v/yii2-detail-view": "*",
-        "kartik-v/yii2-editable": "*",
-        "kartik-v/yii2-grid": "@dev",
-        "kartik-v/yii2-mpdf": "*",
-        "kartik-v/yii2-widget-datepicker": "^1.4",
-        "kartik-v/yii2-widget-select2": "^2.0",
         "miloschuman/yii2-highcharts-widget": "@dev",
-        "phpoffice/phpexcel": "^1.8",
-        "phpoffice/phpword": "^0.15.0",
         "yii2mod/yii2-array-query": "*",
         "yii2tech/ar-softdelete": "^1.0",
         "yiisoft/yii2": "~2.0.30",
         "yiisoft/yii2-debug": "~2.0.0",
         "yiisoft/yii2-bootstrap": "~2.0.0",
         "yiisoft/yii2-swiftmailer": "~2.0.0",
+        "kartik-v/yii2-detail-view": "*",
+        "kartik-v/yii2-editable": "*",
+        "kartik-v/yii2-grid": "@dev",
+        "kartik-v/yii2-mpdf": "*",
+        "kartik-v/yii2-widget-datepicker": "^1.4",
+        "kartik-v/yii2-widget-select2": "^2.0",
         "kartik-v/yii2-date-range": "@dev",
-        "boundstate/yii2-mailgun": "*",
         "kartik-v/yii2-widget-depdrop": "@dev",
         "kartik-v/yii2-widget-activeform": "^1.4",
-        "phpoffice/phpspreadsheet": "*",
         "kartik-v/yii2-number": "^1.0",
         "kartik-v/yii2-widget-datetimepicker": "*",
         "kartik-v/yii2-widget-timepicker": "@dev",
@@ -44,23 +40,17 @@
         "kartik-v/yii2-tabs-x": "@dev",
         "yii2tech/ar-position": "^1.0",
         "kartik-v/yii2-widget-fileinput": "@dev",
-        "npm-asset/sweetalert2": "*"
+        "npm-asset/flatpickr": "^4.6",
+        "npm-asset/sweetalert2": "^10"
     },
     "require-dev": {
         "yiisoft/yii2-gii": "~2.0.0",
         "yiisoft/yii2-faker": "~2.0.0"
     },
     "config": {
-        "platform" : {
-            "php" : "7.1.0"
-        },
         "process-timeout": 1800,
 		"fxp-asset": {
-            "enabled": false,
-			"installer-paths": {
-				"npm-asset-library": "vendor/npm",
-				"bower-asset-library": "vendor/bower"
-			}
+            "enabled": false
 		}
     },
     "scripts": {
@@ -73,8 +63,5 @@
             "type": "composer",
             "url": "https://asset-packagist.org"
         }
-    },
-    "extra": {
-
     }
 }

@@ -26,6 +26,8 @@ use Yii;
  */
 class ProtokolUji extends \yii\db\ActiveRecord
 {
+    use ListableTrait;
+
     public $_instansi;
     public $_sponsor;
 
@@ -60,10 +62,6 @@ class ProtokolUji extends \yii\db\ActiveRecord
             'id_paket' => 'Protokol Uji',
             'nama' => 'Nama Protokol',
         ];
-    }
-
-    public static function getList($labelAttr = 'nama') {
-        return \yii\helpers\ArrayHelper::map(self::find()->all(), 'id',$labelAttr);
     }
 
     public static function getCount()
