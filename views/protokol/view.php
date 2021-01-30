@@ -2,15 +2,8 @@
 <?php
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-use app\components\Helper;
-use app\models\DokumenProtokol;
-use kartik\grid\GridView;
-use yii\helpers\Url;
-use yii\widgets\Pjax;
 
 /** @var yii\web\View $this */
-/** @var app\models\Registrasi $model */
-
 $this->title = "Detail Data Protokol";
 $this->params['breadcrumbs'][] = ['label' => 'Protokol', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;

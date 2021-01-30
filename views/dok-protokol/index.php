@@ -9,8 +9,8 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\models\PasienSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Daftar Calon Subject';
-$this->params['breadcrumbs'][] = $this->title;
+// $this->title = 'Daftar Calon Subject';
+// $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="registrasi-view box box-primary">
     <div class="box-header">
