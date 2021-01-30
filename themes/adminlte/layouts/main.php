@@ -21,6 +21,9 @@ app\assets\AppAsset::register($this);
 
 $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed2010/adminlte/dist');
 
+$this->registerJsFile('@web/js/wretch.js');
+$this->registerJsFile('@web/js/helpers.js', ['depends'=>'Swal2']);
+
 $tooltip = <<< SCRIPT
         $('body').tooltip({
             selector: '[data-toggle="tooltip"]'
@@ -36,10 +39,7 @@ $tooltip = <<< SCRIPT
 
         });        
 SCRIPT;
-
 $this->registerJs($tooltip, \yii\web\View::POS_READY);
-$this->registerJsFile('@web/js/helpers.js', ['depends'=>'Swal2']);
-$this->registerJsFile('https://unpkg.com/wretch');
 
 $js = <<<SCRIPT
 /* To initialize BS3 tooltips set this below */

@@ -1,6 +1,6 @@
 <?php
 
-empty($config['components']['db']) and $config['components']['db'] = [
+$config['components']['db'] = [
     'class' => 'yii\db\Connection',
     'dsn' => 'mysql:host=localhost;dbname=microbiologi',
     'username' => 'root',
@@ -15,3 +15,7 @@ $config['components']['db_rs'] = [
     'password' => 'SuperOne11',
     'charset' => 'utf8',
 ];
+
+if (YII_ENV_DEV) {
+    $config['components']['assetManager']['appendTimestamp'] = true;
+}
