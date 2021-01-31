@@ -18,22 +18,25 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="box-body">
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'template' => '<tr><th width="180px" style="text-align:right">{label}</th><td>{value}</td></tr>',
-        'attributes' => [
-            [
-                'attribute' => 'kode',
-                'format' => 'raw',
-                // 'value' => $model->id,
+        <?= DetailView::widget([
+            'model' => $model,
+            'template' => '<tr><th width="180px" style="text-align:right">{label}</th><td>{value}</td></tr>',
+            'attributes' => [
+                [
+                    'attribute' => 'kode',
+                    'format' => 'raw',
+                ],
+                [
+                    'attribute' => 'nama',
+                    'format' => 'raw',
+                ],
+                [
+                    'attribute' => 'statusLabel',
+                    'label' => 'status',
+                    'format' => 'raw',
+                ],
             ],
-            [
-                'attribute' => 'nama',
-                'format' => 'raw',
-                // 'value' => $model->nama,
-            ],
-        ],
-    ]) ?>
+        ]) ?>
 
     </div>
 
@@ -44,4 +47,4 @@ $this->params['breadcrumbs'][] = $this->title;
 
 </div>
 
-<?= $this->render('_params',compact('model')) ?>
+<?= $this->render('_params', compact('model')) ?>

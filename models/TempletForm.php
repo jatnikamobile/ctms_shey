@@ -28,10 +28,10 @@ class TempletForm extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['kode','nama'], 'required'],
+            [['kode', 'nama'], 'required'],
             // [['id_protokol'], 'integer'],
             // [['id_protokol','nama'], 'safe'],
-            [['kode','nama'], 'string', 'max' => 255],
+            [['kode', 'nama'], 'string', 'max' => 255],
         ];
     }
 
@@ -42,13 +42,24 @@ class TempletForm extends \yii\db\ActiveRecord
 
     public function getManyParam()
     {
-        return $this->hasMany(Parameter::class, ['id_form'=>'id']);
+        return $this->hasMany(Parameter::class, ['id_form' => 'id']);
     }
 
-    public function getListParam($induk=null)
+    public function getListParam($induk = null)
     {
-        return array_filter($this->manyParam, function($param) use($induk) {
+        return array_filter($this->manyParam, function ($param) use ($induk) {
             return $param->id_induk == ($induk ? $induk->id : false);
         });
+    }
+
+    public function getStatusLabel()
+    {
+        $status = [
+            ['Draft', 'default'],
+            ['Verifikasi', 'warning'],
+            ['Aktif', 'success'],
+        ][$this->status];
+
+        return "<span class='label label-{$status[1]}'>{$status[0]}</label>";
     }
 }

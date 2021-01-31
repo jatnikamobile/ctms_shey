@@ -53,6 +53,16 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
 
             [
+                'attribute' => 'status',
+                'headerOptions' => ['style' => 'text-align:center;width:100px'],
+                'contentOptions' => ['style' => 'text-align:left;'],
+                'format' => 'raw',
+                'value' => function($data) {
+                    return $data->statusLabel;
+                },
+            ],
+
+            [
                 'class' => 'yii\grid\ActionColumn',
                 'contentOptions' => ['style' => 'text-align:center;width:120px'],
                 'template' => '{view} {update} {copy} {delete}',
