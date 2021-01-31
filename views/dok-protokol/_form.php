@@ -2,18 +2,7 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
-use kartik\date\DatePicker;
-use kartik\select2\Select2;
-use app\models\Instansi;
-use app\models\Unit;
-use app\models\Pendidikan;
-use app\models\Agama;
-use app\models\Pekerjaan;
-use app\models\Wilayah;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\Pasien */
-/* @var $form yii\widgets\ActiveForm */
 ?>
 
 <?php $form = ActiveForm::begin([
@@ -27,7 +16,8 @@ use app\models\Wilayah;
             'error' => '',
             'hint' => '',
         ],
-    ]
+    ],
+    'options' => ['class'=>'row'],
 ]); ?>
 
 <div class="pasien-form box box-primary">
@@ -39,7 +29,6 @@ use app\models\Wilayah;
         <?= $form->field($model, 'nama')->textInput(['maxlength' => true]) ?>
         <?= $form->field($model, 'file')->fileInput() ?>
         <?= Html::activeHiddenInput($model, 'id_protokol') ?>
-        <?= Html::hiddenInput('referrer', $referrer); ?>
     </div>
 
     <div class="box-footer">

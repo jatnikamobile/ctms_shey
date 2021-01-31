@@ -3,7 +3,6 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use app\models\Instansi;
-use app\models\Paket;
 use kartik\date\DatePicker;
 use kartik\select2\Select2;
 
@@ -64,7 +63,7 @@ use kartik\select2\Select2;
             <div class="row">
                 <div class="col-xs-12">
                     <?= Html::submitButton('<i class="fa fa-check"></i> Filter Data', ['class' => 'btn btn-primary btn-flat']) ?>
-                    <?= Html::button('<i class="fa fa-times"></i> Hapus', ['class' => 'btn btn-default clear btn-flat']) ?>
+                    <?= Html::button('<i class="fa fa-times"></i> Hapus', ['class' => 'btn btn-default btn-flat clearForm']) ?>
                 </div>
             </div>
         </div>

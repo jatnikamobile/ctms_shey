@@ -3,9 +3,6 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use app\components\Helper;
-/* @var $this yii\web\View */
-/* @var $searchModel app\models\RegistrasiSearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Daftar Protokol';
 $this->params['breadcrumbs'][] = $this->title;

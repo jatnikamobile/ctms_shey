@@ -1,89 +1,98 @@
-function clearForm(form) {
-  form = typeof form === 'string' ? document.querySelector(form) : form
-  let type, elements = form.elements;
-  for (i=0; i<elements.length; i++) {
-    type = elements[i].type.toLowerCase();
-    switch(type) {
-      case "text":
-      case "password":
-      case "textarea":
-      case "hidden":
-        elements[i].value = "";
-        break;
-
-      case "radio":
-      case "checkbox":
-        elements[i].checked = false;
-        break;
-
-      case "select-one":
-      case "select-multi":
-        elements[i].selectedIndex = elements[i].item(0).value-0 ? -1 : 0;
-        break;
-    }
-    elements[i].dispatchEvent(new CustomEvent('change'));
+!(function () {
+  const alert = (text, icon, opts = {}) => {
+    opts.text = text
+    opts.icon = icon
+    opts.width = opts.width || '35%'
+    return Swal.fire(opts)
   }
-}
+  window.swal_success = (m) => alert(m, 'success')
+  window.swal_error = (m) => alert(m, 'error')
 
-document.querySelectorAll('.btn.clear').forEach(btn => {
-  btn.addEventListener('click', (ev) => clearForm(ev.target.form || ev.target.dataset.form))
-})
+  const swal_static = (o) => Swal.fire({ ...o, allowOutsideClick: false, allowEscapeKey: false })
 
-;(function() {
-  let btnSelector = '.swal-open';
-
-  window.SwalForm = Swal.mixin({
+  const swal_form = (opts) => {
+    return swal_static({
+      html: opts.html,
+      didRender: (modal) => window[opts.swalDidOpen](modal),
+      preConfirm: async (_wretch, html, form) => {
+        form = document.querySelector('.swal2-content form')
+        _wretch = (d) => wretch(form.action).body(d).post().text()
+        html = await window[opts.swalPreConfirm](_wretch, new FormData(form))
+        if (typeof html !== 'string') return true
+        Swal.update({ html })
+        return false
+      },
       width: '35%',
       showCancelButton: true,
       confirmButtonText: 'Submit',
       showLoaderOnConfirm: true,
-  })
-
-  const swal_form = (html, data) => {
-    let swals = []
-    return SwalForm.fire({
-      html,
-      didOpen(modal,a,s,d,f) {
-        console.info({_this:this,a,s,d,f})
-        swals.push({modal})
-        window[data.swalDidOpen](modal)
-      },
-      preConfirm: (z,x,c,v,b) => {
-        console.info({z,x,c,v,b})
-        return window[data.swalPreConfirm](z,x,c,v,b)
-      },
     })
   }
 
-  window.swal_fire = (opts) => {
-    // console.info({html})
-    opts.width = '35%'
-    opts.didOpen = window[opts.didOpen]
-    // console.info('didOpen', opts)
-    // opts.didOpen =
-    //  (x) => console.info('didOpen', ll1 = x)
-    // opts.didRender = (x) => console.info('didRender', ll2 = x)
-    // opts.showDenyButton = true
-    opts.showCancelButton = true
-    return Swal.fire(opts)
+  yii.confirm = (msg, ok, cancel) => {
+    swal_static({
+      text: msg,
+      showCancelButton: true,
+      icon: 'question',
+    }).then((res) => res.value ? ok && ok() : cancel && cancel())
   }
 
-  const action = (btn) => {
-    let data = btn.dataset
-    if (data.swalForm) {
-      wretch(btn.href).get()
-        .text(x => swal_form(x, data))
-        .catch(err => swal_fire({html:err.message, icon:'error'}))
-    }
-  }
-
-  document.addEventListener('click', (ev) => {
-    let btns = document.querySelectorAll(btnSelector)
-    for (let i=0; i<btns.length; i++) {
-      if (ev.target == btns[i]) {
-        ev.preventDefault()
-        return action(ev.target)
+  const isTag = (n, t) => n.nodeName === t
+  const isBtn = (n) => isTag(n, 'A') || isTag(n, 'BUTTON')
+  const rules = [
+    // [ condition(node), action(event, node) ],
+    [
+      (b) => b.classList.contains('showModalButton') && isBtn(b),
+      (e, btn, data) => {
+        e.preventDefault()
+        data = btn.dataset
+        if (data.modalType === 'form') {
+          return wretch(btn.href).get()
+            .text((x) => { data.html = x; swal_form(data) })
+            .catch((err) => swal_error(err.message))
+        }
+        if (data.modalType === 'embed-pdf') {
+          let html = `<object type="application/pdf" data="${btn.href}" style="width:100%; height:81vh">No Support</object>`;
+          return swal_static({ html, width: '80%', heightAuto: false, title: 'Dokumen ' + data.name })
+        }
       }
-    }
+    ],
+    [
+      (b) => b.classList.contains('clearForm') && isBtn(b),
+      (e, btn, form) => {
+        form = btn.form || document.querySelector(btn.dataset.form)
+        for (i = 0; i < form.length; i++) {
+          switch (form[i].type.toLowerCase()) {
+            case 'text':
+            case 'password':
+            case 'textarea':
+            case 'hidden':
+              form[i].value = '';
+              break;
+
+            case 'radio':
+            case 'checkbox':
+              form[i].checked = false;
+              break;
+
+            case 'select-one':
+            case 'select-multi':
+              form[i].selectedIndex = form[i].item(0).value - 0 ? -1 : 0;
+              break;
+          }
+          form[i].dispatchEvent(new CustomEvent('change'))
+        }
+      }
+    ],
+  ]
+  document.addEventListener('click', (ev, node, i) => {
+    node = ev.target
+    do {
+      for (i = 0; i < rules.length; i++) {
+        if (rules[i][0](node)) return rules[i][1](ev, node)
+      }
+      node = node.parentNode
+    } while (node !== document.body)
   })
+
 })()

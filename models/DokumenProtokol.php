@@ -43,9 +43,10 @@ class DokumenProtokol extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nama','id_protokol','file'], 'required'],
+            [['nama','file'], 'required'],
+            [['id_protokol'], 'required', 'except'=>'update'],
             [['deskripsi'], 'safe'],
-            [['file'], 'file'],
+            [['file'], 'file', 'extensions'=>'pdf'],
         ];
     }
 
