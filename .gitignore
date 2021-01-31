@@ -7,3 +7,5 @@ themes/classic/views/
 
 config/db.php
 config/config-env.php
+
+web/uploads/*/*
