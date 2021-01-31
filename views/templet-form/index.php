@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\PaketSearch */
@@ -53,7 +54,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
             [
                 'class' => 'yii\grid\ActionColumn',
-                'contentOptions' => ['style' => 'text-align:center;width:80px']
+                'contentOptions' => ['style' => 'text-align:center;width:120px'],
+                'template' => '{view} {update} {copy} {delete}',
+                'buttons' => [
+                    'copy' => function($url, $model, $key) {
+                        return '<a href="'. Url::to(['templet-form/copy', 'id'=>$key]).'" title="Copy" aria-label="Copy" data-pjax="0" data-method="post" data-confirm="Apakah anda yakin akan mengcopy templet ini?"><span class="glyphicon glyphicon-copy"></span></a>';
+                    },
+                ],
             ],
         ],
     ]); ?>

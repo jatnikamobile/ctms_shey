@@ -4,18 +4,13 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Paket;
-use app\models\PaketSearch;
 use app\models\TempletForm;
 use app\models\TempletFormSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
-use kartik\mpdf\Pdf;
-use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
-use PhpOffice\PhpSpreadsheet\Style\Alignment;
-use PhpOffice\PhpSpreadsheet\Style\Border;
+use yii\web\BadRequestHttpException;
 
 class TempletFormController extends Controller
 {
@@ -100,6 +95,22 @@ class TempletFormController extends Controller
             'referrer'=>$referrer
         ]);
 
+    }
+
+    public function actionCopy($id)
+    {
+        if (!Yii::$app->request->isPost) {
+            throw new BadRequestHttpException();
+        }
+
+        $model = $this->findModel($id);
+        $model->setOldAttributes(null);
+        $model->id = null;
+        $model->nama = 'Copy of '.$model->nama;
+
+        if ($model->insert(false)) {
+            return $this->redirect(['update', 'id'=>$model->id]);
+        }
     }
 
     /**
