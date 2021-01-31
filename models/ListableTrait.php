@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace app\models;
 
@@ -9,9 +9,9 @@ trait ListableTrait
     /**
      * @return array
      */
-    public static function getList($labelAttr = 'nama')
-	{
-		$query = self::find();
-		return ArrayHelper::map($query->all(), 'id', $labelAttr);
-	}
+    public static function getList($filter = [], $labelAttr = 'nama')
+    {
+        $query = self::find()->andWhere($filter ?: []);
+        return ArrayHelper::map($query->all(), 'id', $labelAttr);
+    }
 }

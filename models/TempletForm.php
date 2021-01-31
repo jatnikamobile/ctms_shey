@@ -28,9 +28,9 @@ class TempletForm extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['kode', 'nama'], 'required'],
-            // [['id_protokol'], 'integer'],
-            // [['id_protokol','nama'], 'safe'],
+            [['kode'], 'required'],
+            [['id_protokol'], 'integer'],
+            [['id_protokol', 'nama'], 'safe'],
             [['kode', 'nama'], 'string', 'max' => 255],
         ];
     }
@@ -61,5 +61,11 @@ class TempletForm extends \yii\db\ActiveRecord
         ][$this->status];
 
         return "<span class='label label-{$status[1]}'>{$status[0]}</label>";
+    }
+
+    public function beforeSave($insert)
+    {
+        $this->nama = Protokol::find()->select('nama');
+        return parent::beforeSave($insert);
     }
 }

@@ -20,7 +20,7 @@ class TempletFormController extends Controller
     public function behaviors()
     {
         return [
-            'access' => [  
+            'access' => [
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
@@ -79,23 +79,17 @@ class TempletFormController extends Controller
         $referrer = Yii::$app->request->referrer;
 
         if ($model->load(Yii::$app->request->post())) {
-
-            $referrer = $_POST['referrer'];
-
-            if($model->save()) {
-                Yii::$app->session->setFlash('success','Data berhasil disimpan.');
-                return $this->redirect($referrer);
+            if ($model->save()) {
+                Yii::$app->session->setFlash('success', 'Data berhasil disimpan.');
+                return $this->redirect(['view', 'id' => $model->id]);
             }
-
-            Yii::$app->session->setFlash('error','Data gagal disimpan. Silahkan periksa kembali isian Anda.');
-
+            Yii::$app->session->setFlash('error', 'Data gagal disimpan. Silahkan periksa kembali isian Anda.');
         }
 
         return $this->render('create', [
             'model' => $model,
-            'referrer'=>$referrer
+            'referrer' => $referrer
         ]);
-
     }
 
     public function actionCopy($id)
@@ -107,10 +101,10 @@ class TempletFormController extends Controller
         $model = $this->findModel($id);
         $model->setOldAttributes(null);
         $model->id = null;
-        $model->nama = 'Copy of '.$model->nama;
+        $model->nama = 'Copy of ' . $model->nama;
 
         if ($model->insert(false)) {
-            return $this->redirect(['update', 'id'=>$model->id]);
+            return $this->redirect(['update', 'id' => $model->id]);
         }
     }
 
@@ -130,22 +124,18 @@ class TempletFormController extends Controller
 
             $referrer = $_POST['referrer'];
 
-            if($model->save())
-            {
-                Yii::$app->session->setFlash('success','Data berhasil disimpan.');
+            if ($model->save()) {
+                Yii::$app->session->setFlash('success', 'Data berhasil disimpan.');
                 return $this->redirect($referrer);
             }
 
-            Yii::$app->session->setFlash('error','Data gagal disimpan. Silahkan periksa kembali isian Anda.');
-
-
+            Yii::$app->session->setFlash('error', 'Data gagal disimpan. Silahkan periksa kembali isian Anda.');
         }
 
         return $this->render('update', [
             'model' => $model,
-            'referrer'=>$referrer
+            'referrer' => $referrer
         ]);
-
     }
 
     /**
@@ -158,23 +148,21 @@ class TempletFormController extends Controller
     {
         $model = $this->findModel($id);
 
-        if($model->delete()) {
-            Yii::$app->session->setFlash('success','Data berhasil dihapus');
+        if ($model->delete()) {
+            Yii::$app->session->setFlash('success', 'Data berhasil dihapus');
         } else {
-            Yii::$app->session->setFlash('error','Data gagal dihapus');
+            Yii::$app->session->setFlash('error', 'Data gagal dihapus');
         }
 
         return $this->redirect(Yii::$app->request->referrer);
-
-
     }
 
     public function actionSubmit($id)
     {
         $model = $this->findModel($id);
-        $model->updateAttributes(['status'=>1]);
-        Yii::$app->session->setFlash('success','Berhasil diajukan');
-        $this->redirect(['view', 'id'=>$model->id]);
+        $model->updateAttributes(['status' => 1]);
+        Yii::$app->session->setFlash('success', 'Berhasil diajukan');
+        $this->redirect(['view', 'id' => $model->id]);
     }
 
     /**
