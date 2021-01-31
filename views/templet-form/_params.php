@@ -6,7 +6,7 @@ use yii\helpers\Html;
 
 <div class="box box-primary">
 	<div class="box-body">
-        <?= Html::a('<i class="fa fa-plus"></i> Tambah Parameter ', ['param/create', 'id_form' => $model->id], ['class' => 'btn btn-flat btn-success']); ?>
+        <?php $model->status or print Html::a('<i class="fa fa-plus"></i> Tambah Parameter ', ['param/create', 'id_form' => $model->id], ['class' => 'btn btn-flat btn-success']); ?>
 	</div>
 	<div class="box-body">
 		<table class="table table-hover">

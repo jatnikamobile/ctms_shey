@@ -41,8 +41,9 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 
     <div class="box-footer">
-        <?= Html::a('<i class="fa fa-pencil"></i> Sunting Templet', ['update', 'id' => $model->id], ['class' => 'btn btn-success btn-flat']) ?>
-        <?= Html::a('<i class="fa fa-list"></i> Templet Form ', ['index'], ['class' => 'btn btn-warning btn-flat']) ?>
+        <?php $model->status or print Html::a('<i class="fa fa-pencil"></i> Sunting Templet', ['update', 'id' => $model->id], ['class' => 'btn btn-primary btn-flat']) ?>
+        <?= Html::a('<i class="fa fa-list"></i> Templet Form ', ['index'], ['class' => 'btn btn-info btn-flat']) ?>
+        <?php $model->status or print Html::a('<i class="fa fa-paper-plane"></i> Ajukan verifikasi', ['submit', 'id' => $model->id], ['class' => 'btn btn-warning btn-flat', 'data-confirm' => 'Apakah anda yakin akan mengajukan templet form ini?', 'data-method' => 'post']) ?>
     </div>
 
 </div>

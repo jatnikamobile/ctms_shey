@@ -31,8 +31,9 @@ class TempletFormController extends Controller
                 ],
             ],
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class' => VerbFilter::class,
                 'actions' => [
+                    'submit' => ['POST'],
                     'delete' => ['POST'],
                 ],
             ],
@@ -166,6 +167,14 @@ class TempletFormController extends Controller
         return $this->redirect(Yii::$app->request->referrer);
 
 
+    }
+
+    public function actionSubmit($id)
+    {
+        $model = $this->findModel($id);
+        $model->updateAttributes(['status'=>1]);
+        Yii::$app->session->setFlash('success','Berhasil diajukan');
+        $this->redirect(['view', 'id'=>$model->id]);
     }
 
     /**
