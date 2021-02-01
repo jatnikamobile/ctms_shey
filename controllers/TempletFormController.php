@@ -33,6 +33,7 @@ class TempletFormController extends Controller
             'verbs' => [
                 'class' => VerbFilter::class,
                 'actions' => [
+                    'copy' => ['POST'],
                     'submit' => ['POST'],
                     'delete' => ['POST'],
                 ],
@@ -94,17 +95,10 @@ class TempletFormController extends Controller
 
     public function actionCopy($id)
     {
-        if (!Yii::$app->request->isPost) {
-            throw new BadRequestHttpException();
-        }
-
         $model = $this->findModel($id);
-        $model->setOldAttributes(null);
-        $model->id = null;
-        $model->nama = 'Copy of ' . $model->nama;
 
-        if ($model->insert(false)) {
-            return $this->redirect(['update', 'id' => $model->id]);
+        if ($newModel = $model->copy()) {
+            return $this->redirect(['update', 'id' => $newModel->id]);
         }
     }
 
@@ -121,12 +115,9 @@ class TempletFormController extends Controller
         $referrer = Yii::$app->request->referrer;
 
         if ($model->load(Yii::$app->request->post())) {
-
-            $referrer = $_POST['referrer'];
-
             if ($model->save()) {
                 Yii::$app->session->setFlash('success', 'Data berhasil disimpan.');
-                return $this->redirect($referrer);
+                return $this->redirect(['view', 'id' => $model->id]);
             }
 
             Yii::$app->session->setFlash('error', 'Data gagal disimpan. Silahkan periksa kembali isian Anda.');
@@ -169,15 +160,14 @@ class TempletFormController extends Controller
      * Finds the Paket model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Paket the loaded model
+     * @return TempletForm the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
         if (($model = TempletForm::findOne($id)) !== null) {
             return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
         }
+        throw new NotFoundHttpException('The requested page does not exist.');
     }
 }

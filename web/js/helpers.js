@@ -29,12 +29,9 @@
     })
   }
 
-  yii.confirm = (msg, ok, cancel) => {
-    swal_static({
-      text: msg,
-      showCancelButton: true,
-      icon: 'question',
-    }).then((res) => res.value ? ok && ok() : cancel && cancel())
+  yii.confirm = (text, ok, cancel, opts) => {
+    opts = {text, showCancelButton: true, icon: 'question', allowOutsideClick: false}
+    return Swal.fire(opts).then((res) => res.value ? ok && ok() : cancel && cancel())
   }
 
   const isTag = (n, t) => n.nodeName === t

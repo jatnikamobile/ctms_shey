@@ -3,12 +3,14 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\Paket */
+/** @var yii\web\View $this */
+/** @var app\models\TempletForm $model */
 
 $this->title = "Detail Form";
 $this->params['breadcrumbs'][] = ['label' => 'Paket', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+$model->rowMeta = new stdClass;
+$model->rowMeta->num = 1;
 ?>
 <div class="paket-view box box-primary">
 
@@ -42,10 +44,39 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="box-footer">
         <?php $model->status or print Html::a('<i class="fa fa-pencil"></i> Sunting Templet', ['update', 'id' => $model->id], ['class' => 'btn btn-primary btn-flat']) ?>
-        <?= Html::a('<i class="fa fa-list"></i> Templet Form ', ['index'], ['class' => 'btn btn-info btn-flat']) ?>
+        <?= Html::a('<i class="fa fa-list"></i> Daftar Templet Form ', ['index'], ['class' => 'btn btn-info btn-flat']) ?>
+        <?= Html::a('<i class="fa fa-copy"></i> Copy', ['copy', 'id' => $model->id], ['class' => 'btn btn-default btn-flat', 'data-method' => "post", 'data-confirm' => "Apakah anda yakin akan mengcopy templet ini?"]) ?>
         <?php $model->status or print Html::a('<i class="fa fa-paper-plane"></i> Ajukan verifikasi', ['submit', 'id' => $model->id], ['class' => 'btn btn-warning btn-flat', 'data-confirm' => 'Apakah anda yakin akan mengajukan templet form ini?', 'data-method' => 'post']) ?>
     </div>
 
 </div>
 
-<?= $this->render('_params', compact('model')) ?>
+<?php //params ?>
+<div class="box box-primary">
+	<div class="box-body">
+        <?php $model->status or print Html::a('<i class="fa fa-plus"></i> Tambah Parameter ', ['param/create', 'id_form' => $model->id], ['class' => 'btn btn-flat btn-success']); ?>
+	</div>
+	<div class="box-body">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th width="55px" class="text-center">No</th>
+					<th class="text-center">Rincian Parameter <?= $model->nama ?></th>
+					<th class="text-center" width="100px">Tipe</th>
+					<th class="text-center" width="180px">Default Value</th>
+					<!-- <th class="text-center" width="150px">Nilai Rujukan</th> -->
+				</tr>
+			</thead>
+			<tbody>
+				<tbody>
+					<?php foreach ($model->getListParam() as $param): ?>
+						<?= $this->render($model->status ? '_sub-param-view' : '_sub-param', [
+							'param' => $param,
+							'model' => $model,
+						]) ?>
+					<?php endforeach ?>
+				</tbody>
+			</tbody>
+		</table>
+	</div>
+</div>

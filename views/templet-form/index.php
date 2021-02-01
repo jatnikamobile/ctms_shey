@@ -80,7 +80,7 @@ Url::remember();
                     ],
                     'buttons' => [
                         'copy' => function ($url, $model, $key) {
-                            return '<a href="' . Url::to(['templet-form/copy', 'id' => $key]) . '" title="Copy" aria-label="Copy" data-pjax="0" data-method="post" data-confirm="Apakah anda yakin akan mengcopy templet ini?"><span class="glyphicon glyphicon-copy"></span></a>';
+                            return '<a href="' . Url::to(['templet-form/copy', 'id' => $key]) . '" title="Copy" aria-label="Copy" data-pjax="0" data-method="post" data-confirm="Apakah anda yakin akan mengcopy templet ini?"><span class="fa fa-copy"></span></a>';
                         },
                     ],
                 ],
