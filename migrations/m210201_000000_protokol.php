@@ -2,7 +2,7 @@
 
 use yii\db\Migration;
 
-class m210129_000000_protokol extends Migration
+class m210201_000000_protokol extends Migration
 {
     /**
      * {@inheritdoc}
@@ -11,6 +11,8 @@ class m210129_000000_protokol extends Migration
     {
         try {
             $this->execute("
+                SET foreign_key_checks = 0;
+
                 DROP TABLE IF EXISTS `dokumen_protokol`;
                 CREATE TABLE `dokumen_protokol` (
                 `id` bigint(20) NOT NULL AUTO_INCREMENT,
@@ -29,8 +31,7 @@ class m210129_000000_protokol extends Migration
                 PRIMARY KEY (`id`)
                 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-                INSERT INTO `instansi` (`id`, `kode`, `nama`, `bagian`) VALUES
-                (10,	1113,	'RSAU',	NULL);
+                INSERT INTO `instansi` (`id`, `kode`, `nama`, `bagian`) VALUES (10,	1113,	'RSAU',	NULL);
 
                 DROP TABLE IF EXISTS `protokol`;
                 CREATE TABLE `protokol` (
@@ -56,10 +57,10 @@ class m210129_000000_protokol extends Migration
                 PRIMARY KEY (`id`)
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-                INSERT INTO `sponsor` (`id`, `nama`) VALUES
-                (3,	'Biontech');
+                INSERT INTO `sponsor` (`id`, `nama`) VALUES (3,	'Biontech');
             ");
         } catch(\Exception $e) {
+            print_r($e);
         }
     }
 
