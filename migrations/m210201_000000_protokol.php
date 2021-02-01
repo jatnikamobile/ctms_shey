@@ -13,6 +13,8 @@ class m210201_000000_protokol extends Migration
             $this->execute("
                 SET foreign_key_checks = 0;
 
+                DROP TABLE IF EXISTS `protokol_uji`;
+
                 DROP TABLE IF EXISTS `dokumen_protokol`;
                 CREATE TABLE `dokumen_protokol` (
                 `id` bigint(20) NOT NULL AUTO_INCREMENT,

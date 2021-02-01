@@ -2,7 +2,7 @@
 
 use yii\db\Migration;
 
-class m210131_000002_templet_form extends Migration
+class m210201_000003_templet_form extends Migration
 {
     /**
      * {@inheritdoc}
@@ -11,7 +11,7 @@ class m210131_000002_templet_form extends Migration
     {
         try {
             $this->execute("
-                ALTER TABLE `form` ADD `status` tinyint NOT NULL DEFAULT '0' COMMENT '0=draft, 1=verifikasi, 2=aktif';
+                ALTER TABLE `form` ADD `id_protokol` bigint(20) NOT NULL DEFAULT '0' AFTER `id`;
             ");
         } catch (\Exception $e) {}
     }
