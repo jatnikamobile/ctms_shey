@@ -42,7 +42,7 @@ class m210129_000001_templet_form extends Migration
                 CREATE TABLE `parameter_opsi` (
                     `id` bigint(20) NOT NULL AUTO_INCREMENT,
                     `id_param` bigint(20) NOT NULL,
-                    `label` text COLLATE utf8mb4_unicode_ci NOT NULL,
+                    `id_label` bigint NOT NULL,
                     PRIMARY KEY (`id`)
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
             ");
