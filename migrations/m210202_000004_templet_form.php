@@ -2,7 +2,7 @@
 
 use yii\db\Migration;
 
-class m210202_000003_templet_form extends Migration
+class m210202_000004_templet_form extends Migration
 {
     /**
      * {@inheritdoc}
@@ -40,7 +40,7 @@ class m210202_000003_templet_form extends Migration
  
         try {
             $this->execute("
-                ALTER TABLE `form` ADD `id_protokol` bigint(20) NOT NULL DEFAULT '0' AFTER `id`;
+                ALTER TABLE `parameter_opsi` ADD `urutan` tinyint(4) NOT NULL;
             ");
         } catch (\Exception $e) {}
     }
