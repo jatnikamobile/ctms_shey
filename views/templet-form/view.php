@@ -9,8 +9,12 @@ use yii\widgets\DetailView;
 $this->title = "Detail Form";
 $this->params['breadcrumbs'][] = ['label' => 'Paket', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
-$model->rowMeta = new stdClass;
-$model->rowMeta->num = 1;
+$model->rowMeta = (object)[
+    'num' => 1,
+    'level' => 0,
+    'btnDropdown' => function () {
+    }
+];
 ?>
 <div class="paket-view box box-primary">
 
@@ -51,32 +55,41 @@ $model->rowMeta->num = 1;
 
 </div>
 
-<?php //params ?>
+<?php //params 
+if ($model->status) {
+    $subParam = '_sub-param-view';
+} else {
+    $subParam = '_sub-param';
+    $model->rowMeta->btnDropdown = function($param) {
+        return $this->render('_button-dropdown', compact('param'));
+    };
+}
+?>
 <div class="box box-primary">
-	<div class="box-body">
+    <div class="box-body">
         <?php $model->status or print Html::a('<i class="fa fa-plus"></i> Tambah Parameter ', ['param/create', 'id_form' => $model->id], ['class' => 'btn btn-flat btn-success']); ?>
-	</div>
-	<div class="box-body">
-		<table class="table table-hover">
-			<thead>
-				<tr>
-					<th width="55px" class="text-center">No</th>
-					<th class="text-center">Rincian Parameter <?= $model->nama ?></th>
-					<th class="text-center" width="100px">Tipe</th>
-					<th class="text-center" width="180px">Default Value</th>
-					<!-- <th class="text-center" width="150px">Nilai Rujukan</th> -->
-				</tr>
-			</thead>
-			<tbody>
-				<tbody>
-					<?php foreach ($model->getListParam() as $param): ?>
-						<?= $this->render($model->status ? '_sub-param-view' : '_sub-param', [
-							'param' => $param,
-							'model' => $model,
-						]) ?>
-					<?php endforeach ?>
-				</tbody>
-			</tbody>
-		</table>
-	</div>
+    </div>
+    <div class="box-body">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th width="55px" class="text-center">No</th>
+                    <th class="text-center">Rincian Parameter <?= $model->nama ?></th>
+                    <th class="text-center" width="100px">Tipe</th>
+                    <th class="text-center" width="180px">Default Value</th>
+                    <!-- <th class="text-center" width="150px">Nilai Rujukan</th> -->
+                </tr>
+            </thead>
+            <tbody>
+            <tbody>
+                <?php foreach ($model->getListParam() as $param) : ?>
+                    <?= $this->render('_sub-param', [
+                        'param' => $param,
+                        'model' => $model,
+                    ]) ?>
+                <?php endforeach ?>
+            </tbody>
+            </tbody>
+        </table>
+    </div>
 </div>

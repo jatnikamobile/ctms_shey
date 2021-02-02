@@ -152,28 +152,34 @@ $this->registerCssFile('@web/vendor/slimselect/custom.css');
         }
 
         const initParamOptions = () => {
-            new SlimSelect({
+            let slim = new SlimSelect({
                 valuesUseText: false,
                 closeOnSelect: false,
+                allowDeselect: true,
                 select: '#param-opts',
                 addable: (value) => ({
                     text: `<span>${value}</span><button class="remove">×</button>`,
                     value
                 }),
-                beforeOnChange(ev, opt) {
-                    console.info({
-                        ev,
-                        opt,
-                        _this: this
-                    })
-                    if (!ev.target.classList.contains('remove')) return
+                beforeChange(ev, opt) {
+                    if (!ev.target.classList.contains('remove')) {
+                        return this.hasDefault = true
+                    }
+
                     for (let i = 0; i < this.slim.list.children.length; i++) {
                         if (this.slim.list.children[i].dataset.id === opt.id) {
                             return this.select.element.options[i].remove()
                         }
                     }
                 },
+                afterChange(opt) {
+                    if (!this.hasDefault) {
+                        this.slim.singleSelected.deselect.click()
+                    }
+                },
             })
+
+            slim.slim.singleSelected.deselect.addEventListener('click', () => slim.open())
         }
 
         document.addEventListener('DOMContentLoaded', (select) => {

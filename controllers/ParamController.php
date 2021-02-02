@@ -157,39 +157,12 @@ class ParamController extends Controller
     {
         $model = $this->findModel($id);
 
-        // if ($model->load(Yii::$app->request->post())) {
-        //     if($model->save()) {
-        //         Yii::$app->session->setFlash('success','Data berhasil disimpan.');
-        //         return $this->redirect($_POST['referrer']);
-        //     }
-
-        //     Yii::$app->session->setFlash('error','Data gagal disimpan. Silahkan periksa kembali isian Anda.');
-        // }
-        // $modelPemeriksaanRincianHasil->id_registrasi = $model->id;
-
-
-        if (Yii::$app->request->isPost) {
-            // $modelPemeriksaanRincianHasil = new PemeriksaanRincianHasil();
-            // if (Yii::$app->request->contentType) {
-            // Membuat array untuk menampung id_pemeriksaan_rincian pada fileInput Lampiran
-            // foreach ($modelPemeriksaanRincianHasil->file as $key => $value) {
-            //     $arrayFile[] = $key;
-            // }
-
-            // $modelPemeriksaanRincianHasil->setDokter();
-            // $modelPemeriksaanRincianHasil->setPemeriksa();
-
-            // Membuat Objek UploadFile pada attribute $file
-            // $files = UploadedFile::getInstances($modelPemeriksaanRincianHasil, 'file');
-            // Upload Lampiran
-            // $modelPemeriksaanRincianHasil->uploadLampiran($model->id, $files);
-
-            // // Save / Update Pemeriksaan (Melakukan Pengecekan Apakah Pemeriksaan Rincian Hasil Sudah Diisi Atau Belum)
-            // $modelPemeriksaanRincianHasil->savePemeriksaanRincianHasil($model->id, Yii::$app->request->post('pilihan'));
-
-            Yii::$app->session->setFlash('success', 'Data Pemeriksaan Berhasil Disimpan');
-
-            return $this->redirect(['templet-form/view', 'id' => $model->id_form]);
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->save()) {
+                Yii::$app->session->setFlash('success', 'Data Pemeriksaan Berhasil Disimpan');
+                return $this->redirect(['templet-form/view', 'id' => $model->id_form]);
+            }
+            Yii::$app->session->setFlash('error', 'Data gagal disimpan. Silahkan periksa kembali isian Anda.');
         }
 
         return $this->render('update', [

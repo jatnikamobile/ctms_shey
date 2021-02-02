@@ -650,6 +650,12 @@ var SlimSelect = (function () {
                 }
             }), false);
         }
+        if (info.beforeChange) {
+            this.beforeOnChange = info.beforeChange;
+        }
+        if (info.afterChange) {
+            this.onChange = info.afterChange;
+        }
         if (info.beforeOnChange) {
             this.beforeOnChange = info.beforeOnChange;
         }

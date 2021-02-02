@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use yii\db\Expression;
+use yii\db\Query;
 
 /**
  * @property int $id
@@ -11,7 +13,6 @@ use Yii;
  * @property string $nama
  * @property int $id_tipe
  * @property int $urutan
- * @property int $level
  * @property string $default
  * @property bool $isPilihan
  * @property bool $isUraian
@@ -85,23 +86,66 @@ class Parameter extends \yii\db\ActiveRecord
         if ($this->datetime) {
             $this->default = $this->datetime;
         }
+        parent::afterValidate();
     }
 
     public function afterSave($insert, $changedAttributes)
     {
-        if ($insert && $this->options) {
-            $data = [];
-            foreach ($this->options as $i => $value) {
-                $data[] = [$this->id, $value];
+        if ($this->isPilihan && $this->options) {
+            $default = null;
+            Yii::$app->db->createCommand()->delete('parameter_opsi', ['id_param' => $this->id])->execute();
+            $labels = (new Query)->select(new Expression('id, lcase(label)label'))->from('parameter_opsi_label')->where(['label' => $this->options])->indexBy('label')->all();
+
+            $urutan = 0;
+            foreach ($this->options as $i => $label) {
+                $urutan++;
+                $lclabel = strtolower($label);
+                if (empty($labels[$lclabel]['id'])) {
+                    $newLabelsInsert[] = [$label];
+                    $newLabels[] = $label;
+                    continue;
+                }
+                if ($i == $this->default) {
+                    $default = $labels[$lclabel]['id'];
+                }
+                $newOpsis[] = [
+                    $this->id,
+                    $labels[$lclabel]['id'],
+                    $urutan,
+                ];
             }
-            Yii::$app->db->createCommand()->batchInsert(ParameterOpsi::tableName(), ['id_param', 'label'], $data)->execute();
-            // } else {
-            //     $oldOptions = $this->manyOpsi;
-            //     ParameterOpsi::find()->andWhere(['id' => array_keys($this->options)])->indexBy('id')->all()
-            // }
-            // $options = 
-            // foreach ($options as $i => $opt) {
-            //     if ()
+
+            if (!empty($newLabelsInsert)) {
+                try {
+                    Yii::$app->db->createCommand()->batchInsert('parameter_opsi_label', ['label'], $newLabelsInsert)->execute();
+                } catch (\Exception $e) {
+                }
+
+                $labels = (new Query)->select(new Expression('id, lcase(label)label'))->from('parameter_opsi_label')->where(['label' => $newLabels])->indexBy('label')->all();
+                $urutan = 0;
+
+                foreach ($this->options as $i => $lclabel) {
+                    $urutan++;
+                    $lclabel = strtolower($lclabel);
+                    if (empty($labels[$lclabel]['id'])) {
+                        continue;
+                    }
+                    if ($i == $this->default) {
+                        $default = $labels[$lclabel]['id'];
+                    }
+                    $newOpsis[] = [
+                        $this->id,
+                        $labels[$lclabel]['id'],
+                        $urutan,
+                    ];
+                }
+            }
+
+            if (!empty($newOpsis)) {
+                Yii::$app->db->createCommand()->batchInsert(ParameterOpsi::tableName(), ['id_param', 'id_label', 'urutan'], $newOpsis)->execute();
+                $this->updateAttributes(['default' => ParameterOpsi::find()->where(['id_param' => $this->id, 'id_label' => $default])->select('id')]);
+            }
         }
+        parent::afterSave($insert, $changedAttributes);
     }
 }
