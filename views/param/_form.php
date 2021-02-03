@@ -52,11 +52,8 @@ $this->registerCssFile('@web/vendor/slimselect/custom.css');
             <div class="form-group">
                 <label class="control-label col-sm-2" for="param-opts">Options</label>
                 <div class="col-sm-6">
-                    <div class="input-group">
-                        <select id="param-opts" class="form-control slimselect"></select>
-                        <a class="input-group-addon" title="toggle" data-toggle><i class="glyphicon glyphicon-plus"></i></a>
-                        <p class="help-block help-block-error "></p>
-                    </div>
+                    <select id="param-opts" class="form-control slimselect"></select>
+                    <p class="help-block help-block-error "></p>
                 </div>
             </div>
             <div class="form-group flatpickr">
@@ -127,10 +124,9 @@ $this->registerCssFile('@web/vendor/slimselect/custom.css');
             row_defs.forEach(r => r.style.display = 'none')
             tipe = get_tipe(id_tipe)
 
-            if (!has_default(tipe)) return
-            if (is_opt(id_tipe)) {
-                return row_defs[1].style.display = '';
-            }
+            if (!has_default(tipe)) return;
+            if (is_opt(id_tipe)) return row_defs[1].style.display = '';
+
             if (id_tipe > 5 && id_tipe < 9) {
                 row_defs[2].style.display = '';
                 fpopts.dateFormat = date_format(id_tipe)
@@ -151,20 +147,19 @@ $this->registerCssFile('@web/vendor/slimselect/custom.css');
             inp_def.type = (id_tipe === 3) ? 'number' : '';
         }
 
-        const initParamOptions = () => {
-            let slim = new SlimSelect({
+        const label = (v) => `<span>${v}</span><button class="remove">×</button>`;
+        const initParamOptions = (_data, _slim, _def) => {
+            _def = <?=$model->default ?: 'null'?>;
+            _data = <?=Json::encode($model->getManyOpsi(1)->all())?>;
+            _slim = new SlimSelect({
+                data: _data.map((opt) => ({innerHTML:label(opt.label), text:opt.label, value:opt.id, selected:_def == opt.id})),
                 valuesUseText: false,
                 closeOnSelect: false,
                 allowDeselect: true,
                 select: '#param-opts',
-                addable: (value) => ({
-                    text: `<span>${value}</span><button class="remove">×</button>`,
-                    value
-                }),
+                addable: (value) => ({text: label(value), value}),
                 beforeChange(ev, opt) {
-                    if (!ev.target.classList.contains('remove')) {
-                        return this.hasDefault = true
-                    }
+                    if (!ev.target.classList.contains('remove')) return this.hasDefault = true;
 
                     for (let i = 0; i < this.slim.list.children.length; i++) {
                         if (this.slim.list.children[i].dataset.id === opt.id) {
@@ -173,13 +168,12 @@ $this->registerCssFile('@web/vendor/slimselect/custom.css');
                     }
                 },
                 afterChange(opt) {
-                    if (!this.hasDefault) {
-                        this.slim.singleSelected.deselect.click()
-                    }
+                    if (this.hasDefault) return;
+                    this.slim.singleSelected.deselect.click()
                 },
             })
 
-            slim.slim.singleSelected.deselect.addEventListener('click', () => slim.open())
+            _slim.slim.singleSelected.deselect.addEventListener('click', () => _slim.open())
         }
 
         document.addEventListener('DOMContentLoaded', (select) => {

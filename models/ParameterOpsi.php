@@ -3,8 +3,6 @@
 namespace app\models;
 
 use Yii;
-use app\models\PemeriksaanRincian;
-use yii\helpers\ArrayHelper;
 
 /**
  * @property string $nama
@@ -12,6 +10,8 @@ use yii\helpers\ArrayHelper;
 class ParameterOpsi extends \yii\db\ActiveRecord
 {
     use ListableTrait;
+
+    public $label;
 
     public static function tableName()
     {

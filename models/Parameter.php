@@ -16,12 +16,13 @@ use yii\db\Query;
  * @property string $default
  * @property bool $isPilihan
  * @property bool $isUraian
+ * @property ParameterOpsi[] $manyOpsi
  */
 class Parameter extends \yii\db\ActiveRecord
 {
     use ListableTrait;
 
-    public $options;
+    public $options = [];
     public $datetime;
     public $_induk;
 
@@ -76,9 +77,9 @@ class Parameter extends \yii\db\ActiveRecord
         return $this->hasMany(static::class, ['id_induk' => 'id']);
     }
 
-    public function getManyOpsi()
+    public function getManyOpsi($asArray=0)
     {
-        return $this->hasMany(ParameterOpsi::class, ['id_param' => 'id'])->leftJoin('parameter_opsi_label l', 'l.id=id_label');
+        return $this->hasMany(ParameterOpsi::class, ['id_param' => 'id'])->alias('o')->leftJoin('parameter_opsi_label l', 'l.id=id_label')->select('o.id id,id_label,label')->orderBy('urutan')->asArray($asArray);
     }
 
     public function afterValidate()
@@ -91,7 +92,7 @@ class Parameter extends \yii\db\ActiveRecord
 
     public function afterSave($insert, $changedAttributes)
     {
-        if ($this->isPilihan && $this->options) {
+        if ($this->isPilihan && is_array($this->options)) {
             $default = null;
             Yii::$app->db->createCommand()->delete('parameter_opsi', ['id_param' => $this->id])->execute();
             $labels = (new Query)->select(new Expression('id, lcase(label)label'))->from('parameter_opsi_label')->where(['label' => $this->options])->indexBy('label')->all();
